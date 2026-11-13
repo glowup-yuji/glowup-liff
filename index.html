@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GLOW UP.</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    :root { --gold:#b08d2e; --ink:#1d1b18; --muted:#6b655b; --bg:#faf8f3; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
+      font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      font-size: 15px; line-height: 1.7; display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .wrap { text-align: center; max-width: 360px; }
+    .logo { font-family: Georgia, serif; letter-spacing: .2em; color: var(--gold); font-size: 22px; margin-bottom: 16px; }
+    p { color: var(--muted); margin: 0 0 12px; }
+    .err { color: #b3261e; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">GLOW UP.</div>
+    <p id="msg">予約・目標・体重の画面を開いています…</p>
+  </div>
+  <form id="go" method="POST" action="https://script.google.com/macros/s/AKfycbytwXgcklFUqBaWNb2P67plc8RXNIUmHkgx6Ckzao75rlsbQpm8i9BlVioV43IEg3lM/exec">
+    <input type="hidden" name="id_token" id="id_token">
+    <input type="hidden" name="u" id="u">
+  </form>
+  <script>
+    /* LINE DevelopersでLIFFアプリを作ったあとに、ここの値を差し替えます */
+    var LIFF_ID = 'YOUR_LIFF_ID';
+
+    function show(text, isErr) {
+      var el = document.getElementById('msg');
+      el.textContent = text;
+      el.className = isErr ? 'err' : '';
+    }
+
+    function getU() {
+      try {
+        var q = new URLSearchParams(location.search);
+        if (q.get('u')) return q.get('u');
+        var state = q.get('liff.state') || '';
+        if (!state) return '';
+        var s = decodeURIComponent(state);
+        var q2 = new URLSearchParams(s.charAt(0) === '?' ? s.slice(1) : s);
+        return q2.get('u') || '';
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function start() {
+      if (!LIFF_ID || LIFF_ID === 'YOUR_LIFF_ID') {
+        show('まだ準備の途中です。公式LINEでうーじさんに連絡してください。', true);
+        return;
+      }
+      liff.init({ liffId: LIFF_ID }).then(function () {
+        if (!liff.isLoggedIn()) {
+          liff.login({ redirectUri: location.href });
+          return;
+        }
+        var token = liff.getIDToken();
+        if (!token) {
+          show('LINEの確認ができませんでした。許可の画面で同意してから、もう一度開いてください。', true);
+          return;
+        }
+        document.getElementById('id_token').value = token;
+        document.getElementById('u').value = getU();
+        document.getElementById('go').submit();
+      }).catch(function () {
+        show('画面を開けませんでした。時間をおいて、もう一度「予約・体重」から開いてください。', true);
+      });
+    }
+
+    start();
+  </script>
+</body>
+</html>
