@@ -44,8 +44,8 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 .terms{font-size:13px;color:var(--muted);margin:6px 0 0;padding-left:18px}
 .linkbtn{display:block;text-align:center;text-decoration:none;border-radius:10px;margin-top:10px}
 .tabs.main button{font-size:15px;padding:12px 6px}
-.subtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:-6px 0 16px}
-.subtabs button{background:#fff;border:1px solid var(--line);padding:11px 4px;font-weight:600;font-size:13px;white-space:nowrap}
+.subtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:-6px 0 16px}
+.subtabs button{background:#fff;border:1px solid var(--line);padding:11px 2px;font-weight:600;font-size:12.5px;white-space:nowrap;letter-spacing:-.02em}
 .subtabs button.on{background:var(--gold);border-color:var(--gold);color:#fff}
 .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:999px;background:#f6eedb;color:#7a5f17;margin-right:4px;vertical-align:1px}
 .tag.zoom{background:#0b0a08;color:#d4af37}
@@ -97,9 +97,36 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 .wcard{border-color:var(--gold)}.wcard h2{margin-top:0}
 .bigin{font-size:26px;font-weight:700;text-align:center;min-height:58px}
 .wnow .big{font-size:32px}.done{color:#1f7a3f;font-weight:700}
+.hv-seg{display:flex;gap:6px;margin:0 0 10px}.hv-seg button{flex:1;background:#fff;border:1px solid var(--line);padding:10px 4px;font-weight:700}
+.hv-seg button.on{background:#0b0a08;color:#d4af37;border-color:#0b0a08}
+.hv-h{font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:6px}
+.hv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
+.hv-st{background:#faf6ea;border:1px solid #eee3c4;border-radius:10px;text-align:center;padding:8px 4px}
+.hv-st .muted{font-size:11px}.hv-big{font-size:20px;font-weight:700;line-height:1.3}
+.hv-st.down .hv-big{color:#1f7a3f}.hv-st.up .hv-big{color:#9b2c25}
+.hv-cl{font-size:11.5px;color:var(--muted);margin-top:4px}
+.hv-chart{width:100%;height:auto;display:block;margin:2px 0 4px}
+.hv-nochart{padding:8px 0}
+.hv-list{padding:4px 12px}
+.hv-day,.hv-wk{padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}.hv-day:last-child,.hv-wk:last-child{border-bottom:0}
+.hv-day.today{background:#fffdf6}
+.hv-dh{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}.hv-dh .hv-w,.hv-dh .hv-wchg{margin-left:auto;white-space:nowrap}
+.hv-w b{font-size:16px}
+.hv-wchg{font-weight:700}.hv-wchg.down{color:#1f7a3f}.hv-wchg.up{color:#9b2c25}
+.hv-meals{margin-top:3px}.hv-fw{color:#6b655b;font-size:12.5px}
+.hv-sub{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-top:2px}
+.hv-fast{font-weight:700;white-space:nowrap}.hv-fast.good{color:#1f7a3f}
+.hv-wg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:6px 0 4px;text-align:center}
+.hv-wg div{background:#faf6ea;border-radius:8px;padding:5px 2px;line-height:1.3}.hv-wg .muted{display:block;font-size:11px}.hv-wg b{font-size:16px}
+.hv-more{width:100%;margin:2px 0 6px;font-weight:700}
+.hv-note{font-size:12px}
+.ovw{overflow-x:auto}.ovt{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+.ovt th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:4px 5px;line-height:1.3;border-bottom:1px solid var(--line)}
+.ovt td{text-align:right;padding:7px 5px;border-bottom:1px solid var(--line)}.ovt th:first-child,.ovt td:first-child{text-align:left}
+.ovt tr.ovr{cursor:pointer}.ovt tr.ovr:hover{background:#fffdf6}.ovt .down{color:#1f7a3f;font-weight:700}.ovt .up{color:#9b2c25;font-weight:700}.ovt .old{color:#9b2c25}
 </style></head><body><header>GLOW UP.</header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><main id="app"><p class="muted">読み込み中…</p></main>
 <script>
-/* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v10.1 と組み合わせて使います
+/* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v11 と組み合わせて使います
    LINEで本人確認 → 予約システム（Google Apps Script）の JSON API を fetch で呼びます。
    この画面から script.google.com へ移動することはありません。管理キーはここにはありません。 */
 var LIFF_ID = '2012605802-7XWt8wqw';
@@ -128,6 +155,7 @@ var API_ARGS = {
   api_saveGoal: ['saveGoal', ['token', 'f']],
   api_saveWeight: ['saveWeight', ['token', 'f']],
   api_getMonthly: ['getMonthly', ['token']],
+  api_history: ['history', ['token']],
   api_saveMonthly: ['saveMonthly', ['token', 'f']],
   api_enrollInfo: ['enrollInfo', ['token', 'ticket']],
   api_enroll: ['enroll', ['token', 'ticket', 'f']]
@@ -170,6 +198,7 @@ function render(){
   else if(tab==='きょう') h+=viewHome();
   else if(tab==='食事') h+=viewMeal();
   else if(tab==='予定') h+=viewSchedule();
+  else if(tab==='履歴') h+=viewHist();
   else h+=viewBook();
   document.getElementById('app').innerHTML=h;
 }
@@ -272,8 +301,7 @@ function viewEnroll(){
     h+='<h2>お支払い回数</h2><div class="card">';
     h+='<label class="chk"><input type="radio" name="e_pay" value="lump"'+(f.pay==='lump'?' checked':'')+' onchange="selPay(this)"><span><b>一括払い</b>　'+esc(sel.priceLabel.replace(/（.*$/,''))+'</span></label>';
     h+='<label class="chk"><input type="radio" name="e_pay" value="split3"'+(f.pay==='split3'?' checked':'')+' onchange="selPay(this)"><span><b>3回払い（3ヶ月払い）</b>　1回目 ¥'+am[0].toLocaleString()+'、2回目・3回目 ¥'+am[1].toLocaleString()+'</span></label>';
-    var dd=sel.split.dueDay||20;
-    h+='<p class="muted" style="margin:4px 0 0;font-size:12.5px">3回払いは前払いです。1回目は開始日まで、2回目は開始した月の'+dd+'日まで、3回目はその翌月の'+dd+'日までです（'+dd+'日より後に開始したときは、2回目も開始日まで）。振込手数料はお客様のご負担です。</p></div>';
+    h+='<p class="muted" style="margin:4px 0 0;font-size:12.5px">振込手数料はお客様のご負担です。</p></div>';
   }
   if(sel&&sel.cont){
     h+='<div class="card ref"><b>継続プランについて</b><p class="muted" style="margin:4px 0 8px">継続プランは、ふだんはGLOW UP.の3ヶ月プログラムを終えた方が対象です。PIT INのサイクルファスティングを3ヶ月受けた方は、3ヶ月プログラムなしで継続プランから始められます。</p>';
@@ -471,6 +499,7 @@ function saveGoal(){
   .withFailureHandler(function(e){b.disabled=false;b.textContent='目標を保存する';document.getElementById('g_msg').innerHTML='<p class="err">'+esc(e.message)+'</p>';}).api_saveGoal(TOKEN,f);
 }
 function saveWeight(){
+  HIST=null;
   var b=document.getElementById('w_go');b.disabled=true;b.textContent='記録しています…';
   wDate=val('w_d',wDate);
   var f={date:wDate,weight:val('w_w'),fat:val('w_f'),note:val('w_n')};
@@ -490,7 +519,7 @@ function cancelB(id,el){
   armed=null;el.disabled=true;el.textContent='キャンセル中…';
   gas().withSuccessHandler(function(){alertMsg('キャンセルしました。');load();}).withFailureHandler(function(e){alertMsg(e.message,'err');load();}).api_cancel(TOKEN,id);}
 /* ---------- v8 マイページ（きょう・食事・予定・記録） ---------- */
-var MY_TABS=[['きょう','きょう'],['食事','食事'],['体重','体重・体脂肪'],['予定','予定'],['目標','目標'],['今月','今月の目標']];
+var MY_TABS=[['きょう','きょう'],['食事','食事'],['体重','体重・体脂肪'],['履歴','履歴'],['予定','予定'],['目標','目標'],['今月','今月の目標']];
 var bkind='', mDate=null, MD=null;
 function isMy(t){for(var i=0;i<MY_TABS.length;i++){if(MY_TABS[i][0]===t)return true;}return false;}
 function h1(v){return v==null?'—':(Math.round(v*10)/10)+'';}
@@ -606,6 +635,7 @@ function viewMeal(){
   return h;
 }
 function saveMeal(){
+  HIST=null;
   var miss=MEALS3.filter(function(p){return MD[p[0]].s==='yes'&&!hmOf(MD[p[0]]);})[0];
   if(miss){document.getElementById('meal_msg').innerHTML='<p class="err">'+miss[1]+'を食べた時間を選んでください。</p>';return;}
   var b=document.getElementById('meal_go');b.disabled=true;b.textContent='記録しています…';
@@ -716,6 +746,7 @@ function todayW(){var w=D.weights||{};return ((w.recent||w.entries||[]).filter(f
 function zoomLine(z){return 'Zoom面談 いま予約できるのは あと<b class="big" style="font-size:22px"> '+z.left+' </b>回<div class="muted">月'+z.allow+'回・使わなかった分は翌月にくり越し（このプランで全'+z.total+'回・使った '+z.used+'回）</div>'+(z.left?'':'<div class="muted">'+(z.rest?'次の回は、来月になると予約できます。':'このプランのZoom面談は、すべて使いました。')+'</div>');}
 function goZoom(){bkind='Zoom面談';day=null;pick=null;go('予約');window.scrollTo(0,0);}
 function saveTodayWeight(){
+  HIST=null;
   var b=document.getElementById('hw_go');b.disabled=true;b.textContent='記録しています…';
   var f={date:D.today,weight:val('hw_w'),fat:val('hw_f'),note:(todayW()||{}).note||''};
   gas().withSuccessHandler(function(r){D.weights=r.weights;editTW=false;alertMsg('記録しました。きょうもいい1日に！');render();window.scrollTo(0,0);})
@@ -756,6 +787,120 @@ function eRefresh(msg){
 function selPay(el){collect();render();}
 function selAge(el){collect();render();}
 function eRows(p){return (ES.f.pay==='split3'&&p.split)?p.split.contract:p.contract;}
+/* ---------- v11 履歴（お客様画面と管理画面で同じ見た目） ---------- */
+var HV={range:'1m',n:14,wn:4};
+function hvResetPaging(){HV.n=14;HV.wn=4;}
+function hvNum(v){return v===''||v==null||!isFinite(Number(v))?null:Number(v);}
+function hvR1(v){return Math.round(v*10)/10;}
+function hvSign(v){if(v==null)return '—';return (v>0?'+':(v<0?'−':'±'))+Math.abs(hvR1(v));}
+function hvMD(s){var p=String(s||'').split('-');return p.length===3?Number(p[1])+'/'+Number(p[2]):String(s||'');}
+function hvAddDays(ymd,n){var p=String(ymd).split('-');var d=new Date(+p[0],+p[1]-1,+p[2]+n);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+function hvInRange(H){
+  var s=H.series||[];if(HV.range==='all')return s.slice();
+  var from=hvAddDays(H.today,HV.range==='3m'?-90:-29);
+  return s.filter(function(e){return e.date>=from;});
+}
+function hvSetRange(r){HV.range=r;render();}
+function hvMore(){HV.n+=14;render();}
+function hvMoreW(){HV.wn+=8;render();}
+function hvChart(pts,key,label,unit,goal){
+  pts=pts.filter(function(e){return hvNum(e[key])!=null;});
+  if(pts.length<2)return '<div class="hv-nochart muted">'+esc(label)+'：グラフは、2日分の記録がたまると出ます。</div>';
+  var vs=pts.map(function(e){return Number(e[key]);});
+  var min=Math.min.apply(null,vs),max=Math.max.apply(null,vs);
+  var pad=Math.max((max-min)*0.15,key==='weight'?0.5:0.3);min=hvR1(min-pad);max=hvR1(max+pad);
+  var W=340,H=150,T=12,B=22,L=40,R=12;
+  var t0=new Date(pts[0].date.replace(/-/g,'/')).getTime(),t1=new Date(pts[pts.length-1].date.replace(/-/g,'/')).getTime();
+  function sx(e){var t=new Date(e.date.replace(/-/g,'/')).getTime();return L+(t1===t0?0:(t-t0)/(t1-t0))*(W-L-R);}
+  function sy(v){return T+(max-v)/(max-min)*(H-T-B);}
+  var h='<div class="hv-cl">'+esc(label)+'</div><svg class="hv-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+'の推移">';
+  for(var g=0;g<3;g++){var v=hvR1(max-(max-min)*g/2),y=sy(v).toFixed(1);h+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#ece5d3"/><text x="'+(L-5)+'" y="'+(+y+3.5)+'" font-size="10" fill="#6b655b" text-anchor="end">'+v+'</text>';}
+  if(goal!==''&&goal!=null&&goal>=min&&goal<=max){var gy=sy(goal).toFixed(1);h+='<line x1="'+L+'" y1="'+gy+'" x2="'+(W-R)+'" y2="'+gy+'" stroke="#1f7a3f" stroke-dasharray="4 3"/><text x="'+(W-R)+'" y="'+(gy-3)+'" font-size="10" fill="#1f7a3f" text-anchor="end">目標 '+goal+unit+'</text>';}
+  var d=pts.map(function(e,i){return (i?'L':'M')+sx(e).toFixed(1)+','+sy(Number(e[key])).toFixed(1);}).join(' ');
+  var area=d+' L'+sx(pts[pts.length-1]).toFixed(1)+','+(H-B)+' L'+sx(pts[0]).toFixed(1)+','+(H-B)+' Z';
+  h+='<path d="'+area+'" fill="#b08d2e" fill-opacity=".08"/><path d="'+d+'" fill="none" stroke="#b08d2e" stroke-width="2.2" stroke-linejoin="round"/>';
+  if(pts.length<=45)pts.forEach(function(e){h+='<circle cx="'+sx(e).toFixed(1)+'" cy="'+sy(Number(e[key])).toFixed(1)+'" r="2.6" fill="#b08d2e"/>';});
+  var le=pts[pts.length-1],lx=sx(le),ly=sy(Number(le[key]));
+  h+='<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="4.5" fill="#0b0a08" stroke="#d4af37" stroke-width="2"/>';
+  h+='<text x="'+Math.min(lx,W-R).toFixed(1)+'" y="'+Math.max(ly-8,T+2).toFixed(1)+'" font-size="11" font-weight="700" fill="#0b0a08" stroke="#fff" stroke-width="3" paint-order="stroke" text-anchor="end">'+le[key]+unit+'</text>';
+  var mid=pts[Math.floor((pts.length-1)/2)];
+  h+='<text x="'+L+'" y="'+(H-6)+'" font-size="10" fill="#6b655b">'+esc(hvMD(pts[0].date))+'</text>';
+  if(pts.length>2)h+='<text x="'+sx(mid).toFixed(1)+'" y="'+(H-6)+'" font-size="10" fill="#6b655b" text-anchor="middle">'+esc(hvMD(mid.date))+'</text>';
+  h+='<text x="'+(W-R)+'" y="'+(H-6)+'" font-size="10" fill="#6b655b" text-anchor="end">'+esc(hvMD(le.date))+'</text>';
+  return h+'</svg>';
+}
+function hvStat(title,val,sub,cls){return '<div class="hv-st'+(cls?' '+cls:'')+'"><div class="muted">'+title+'</div><div class="hv-big">'+val+'</div><div class="muted">'+sub+'</div></div>';}
+function hvRangeStats(pts,key,unit){
+  pts=pts.filter(function(e){return hvNum(e[key])!=null;});
+  if(!pts.length)return '';
+  var a=pts[0],b=pts[pts.length-1],ch=pts.length>1?Number(b[key])-Number(a[key]):null;
+  return '<div class="hv-stats">'+hvStat('はじめ（'+esc(hvMD(a.date))+'）',a[key],unit)+hvStat('いま（'+esc(hvMD(b.date))+'）',b[key],unit)+hvStat('変化',hvSign(ch),unit,ch!=null&&ch<0?'down':(ch>0?'up':''))+'</div>';
+}
+function hvMealMark(x){if(!x||!x.s)return '<span class="muted">—</span>';if(x.s==='no')return '<span class="hv-fw">ファスティング</span>';return x.t?esc(x.t):'食べた';}
+function hvFast(v,goalH){if(v==null)return '';return '<span class="hv-fast'+(v>=goalH?' good':'')+'">ファスティング '+hvR1(v)+'時間</span>';}
+function hvWeeks(H){
+  var ws=H.weeks||[];if(!ws.length)return '<div class="card muted">まだ記録がありません。</div>';
+  var h='<div class="card hv-list">';
+  ws.slice(0,HV.wn).forEach(function(w){
+    h+='<div class="hv-wk"><div class="hv-dh"><b>'+esc(w.label)+'</b>'+(w.isNow?' <span class="tag">今週</span>':'')+'<span class="hv-wchg'+(w.wChange!=null&&w.wChange<0?' down':(w.wChange>0?' up':''))+'">'+(w.wChange!=null?'体重 '+hvSign(w.wChange)+'kg':(w.wLast!=null?'体重 '+w.wLast+'kg':''))+'</span></div>';
+    h+='<div class="hv-wg"><div><span class="muted">食事</span><b>'+w.count+'</b>回'+(w.snack?'<span class="muted">（間食'+w.snack+'）</span>':'')+'</div>';
+    h+='<div><span class="muted">平均</span><b>'+(w.avg!=null?hvR1(w.avg):'—')+'</b>時間</div>';
+    h+='<div><span class="muted">合計</span><b>'+(w.total!=null?hvR1(w.total):'—')+'</b>時間</div>';
+    h+='<div><span class="muted">'+H.goalH+'h以上</span><b>'+w.days16+'</b>日</div></div>';
+    h+='<div class="muted">記録 '+w.recDays+'日'+(w.max!=null?'・いちばん長い '+hvR1(w.max)+'時間':'')+'</div></div>';
+  });
+  h+='</div>';
+  if(ws.length>HV.wn)h+='<button class="ghost hv-more" onclick="hvMoreW()">もっと前の週を見る（あと'+(ws.length-HV.wn)+'週）</button>';
+  return h;
+}
+function hvDays(H){
+  var ds=H.days||[];if(!ds.length)return '<div class="card muted">まだ記録がありません。</div>';
+  var h='<div class="card hv-list">';
+  ds.slice(0,HV.n).forEach(function(x){
+    var r=x.rec;
+    h+='<div class="hv-day'+(x.isToday?' today':'')+'"><div class="hv-dh"><b>'+esc(x.label)+'</b>'+(x.isToday?' <span class="tag">きょう</span>':'');
+    h+='<span class="hv-w">'+(x.weight!==''?'<b>'+x.weight+'</b>kg':'<span class="muted">体重 —</span>')+(x.fat!==''?'　<b>'+x.fat+'</b>%':'')+'</span></div>';
+    if(r){
+      var sn=(r.snacks||[]).length;
+      h+='<div class="hv-meals">朝 '+hvMealMark(r.b)+'　昼 '+hvMealMark(r.l)+'　夕 '+hvMealMark(r.d)+(sn?'　間食 '+sn+'回':'')+'</div>';
+      h+='<div class="hv-sub">'+(x.fast!=null?hvFast(x.fast,H.goalH):'<span class="muted">ファスティング —</span>')+'<span class="muted">食事 '+x.count+'回</span></div>';
+      if(r.note)h+='<div class="muted">'+esc(r.note)+'</div>';
+    }else h+='<div class="muted">食事の記録なし</div>';
+    if(x.wnote)h+='<div class="muted">体重メモ：'+esc(x.wnote)+'</div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  if(ds.length>HV.n)h+='<button class="ghost hv-more" onclick="hvMore()">もっと見る（あと'+(ds.length-HV.n)+'日）</button>';
+  return h;
+}
+function histView(H){
+  var h='<div class="hv">';
+  h+='<div class="hv-seg">';[['1m','1ヶ月'],['3m','3ヶ月'],['all','全期間']].forEach(function(r){h+='<button class="'+(HV.range===r[0]?'on':'')+'" onclick="hvSetRange(\''+r[0]+'\')">'+r[1]+'</button>';});h+='</div>';
+  var pts=hvInRange(H);
+  h+='<div class="card">';
+  if(!(H.series||[]).length)h+='<div class="muted">体重の記録がまだありません。記録すると、ここに流れが出ます。</div>';
+  else if(!pts.length)h+='<div class="muted">この期間の体重の記録はありません。「全期間」で見てみてください。</div>';
+  else{
+    h+='<div class="hv-h">体重</div>'+hvRangeStats(pts,'weight','kg')+hvChart(pts,'weight','体重（kg）','kg',H.goal);
+    if(pts.some(function(e){return hvNum(e.fat)!=null;}))h+='<div class="hv-h" style="margin-top:12px">体脂肪率</div>'+hvRangeStats(pts,'fat','%')+hvChart(pts,'fat','体脂肪率（%）','%','');
+  }
+  h+='</div>';
+  h+='<h2>週ごとのまとめ</h2>'+hvWeeks(H);
+  h+='<h2>日ごとの記録</h2>'+hvDays(H);
+  h+='<p class="muted hv-note">ファスティング時間＝前に食べた最後の食事（間食をふくむ）から、その日の最初に食べたときまでの時間です。食べた時間の記録がそろった日だけ出ます。</p>';
+  return h+'</div>';
+}
+var HIST=null,histLoading=false,histErr='';
+function loadHist(){histLoading=true;histErr='';gas().withSuccessHandler(function(r){histLoading=false;HIST=r;if(tab==='履歴')render();}).withFailureHandler(function(e){histLoading=false;histErr=(e&&e.message)||String(e);if(tab==='履歴')render();}).api_history(TOKEN);}
+function retryHist(){histErr='';render();}
+function viewHist(){
+  if(!HIST){
+    if(histErr)return '<div class="card err">'+esc(histErr)+'</div><button class="ghost hv-more" onclick="retryHist()">もう一度読み込む</button>';
+    if(!histLoading)loadHist();
+    return '<div class="card muted">これまでの記録を読み込んでいます…</div>';
+  }
+  return '<p class="muted">これまでの体重・体脂肪と、食事・ファスティングの流れです。がんばりの積み重ねを、ここでふりかえりましょう。</p>'+histView(HIST);
+}
 function alertMsg(m,cls){document.getElementById('flash').innerHTML='<div class="card '+(cls||'ok')+'">'+esc(m)+'</div>';window.scrollTo(0,0);}
 /* ---------- 公式LINEから開いたとき ---------- */
 function getParam(name){
