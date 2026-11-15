@@ -132,7 +132,7 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 var LIFF_ID = '2012605802-7XWt8wqw';
 var API_URL = 'https://script.google.com/macros/s/AKfycbytwXgcklFUqBaWNb2P67plc8RXNIUmHkgx6Ckzao75rlsbQpm8i9BlVioV43IEg3lM/exec';
 var FORM_URL_DEFAULT = 'https://docs.google.com/forms/d/e/1FAIpQLSdlOM8HhH2OuScbH5d3edMAzbWaB23CGSuBUIRZS7gtHfuXWQ/viewform';
-var OPEN_ERR = '画面を開けませんでした。時間をおいて、もう一度「予約・体重」から開いてください。';
+var OPEN_ERR = '画面を開けませんでした。時間をおいて、もう一度公式LINEの「マイページ」から開いてください。';
 var NET_ERR = '通信がうまくいきませんでした。電波のよいところで、もう一度お試しください。';
 var TOKEN = '';
 var NOTICE = '';
@@ -226,7 +226,7 @@ function viewBook(){
   var SL=bkind==='Zoom面談'?(z.slots||[]):D.slots, LEN=bkind==='Zoom面談'?z.len:D.len;
   if(bkind==='Zoom面談'){h+='<div class="zbox"><span class="tag zoom">Zoom面談</span>'+zoomLine(z)+'<div class="muted">1回'+z.len+'分・オンライン'+(z.next?'　次回：'+esc(z.next):'')+'</div><div class="muted">'+esc(z.note)+'</div></div>';}
   if(D.pendingApply&&!kinds.length){
-    h+='<p>お申し込みを受け付けました。内容を確認して、こちらから受付確定のご連絡をします。確定までもうしばらくお待ちください。</p><p class="muted" style="margin:0">そのあいだに、「目標」や「今日の体重」タブを使っておくこともできます。</p>';
+    h+='<p>お申し込みを受け付けました。内容を確認して、こちらから受付確定のご連絡をします。確定までもうしばらくお待ちください。</p><p class="muted" style="margin:0">そのあいだに、「マイページ」の「きょう」や「目標」タブを使っておくこともできます。</p>';
   }else if(!kinds.length){
     h+='<p>こちらのプランは、食事サポートが中心です。この画面からのご予約はありません。</p><p class="muted" style="margin:0">対面でお会いしたいときは、公式LINEでご相談ください。</p>';
   }else if(!SL.length){
@@ -394,7 +394,7 @@ function viewEnrollDone(){
   h+='<li>それまでに「目標」タブで、なりたい姿を書いておいてもらえると、カウンセリングがスムーズです。</li></ol></div>';
   if(r.payUrl)h+='<a class="pri linkbtn" href="'+esc(r.payUrl)+'" target="_blank">お支払いへ進む</a>';
   h+='<div style="margin-top:12px"><button class="pri" onclick="toGoal()">目標を書いておく</button></div>';
-  h+='<p class="muted" style="text-align:center;margin-top:14px">次からは、公式LINEの「予約・体重」から、この画面を開けます。</p>';
+  h+='<p class="muted" style="text-align:center;margin-top:14px">次からは、公式LINEの「マイページ」から、この画面を開けます。ご予約は「予約」ボタンからどうぞ。</p>';
   return h;
 }
 function val(id, fallback){var el=document.getElementById(id);return el?el.value:(fallback||'');}
@@ -921,7 +921,7 @@ function showUnlinked(formUrl){
   document.getElementById('flash').innerHTML='';
   document.getElementById('app').innerHTML='<div style="text-align:center;padding:12px 4px">'
     +'<p>まだ、このLINEとお客様情報の連携ができていません。</p>'
-    +'<p>うーじさんから公式LINEで届いた専用リンクを、このLINEの中で1回開いてください。それ以降は、トーク画面の「予約・体重」から使えるようになります。</p>'
+    +'<p>うーじさんから公式LINEで届いた専用リンクを、このLINEの中で1回開いてください。それ以降は、トーク画面の「予約」や「マイページ」から使えるようになります。</p>'
     +'<p style="margin-top:28px">まだ入会前の方は、こちらからお申し込みください。</p>'
     +'<p><a href="'+esc(f)+'" target="_blank" style="display:inline-block;background:#0b0a08;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:700">入会の申し込みへ</a></p>'
     +'</div>';
