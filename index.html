@@ -69,6 +69,22 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 .sch textarea{min-height:46px}
 .sch .row{align-items:flex-start}
 .go2{margin-top:10px}
+.monban{background:#141414;color:#f6f1e8;border:1px solid #d4af37;border-radius:12px;padding:14px 14px 12px;text-align:center;margin:10px 0 4px}
+.monban .monk{font-size:11px;letter-spacing:.35em;color:#d4af37;font-weight:700}
+.monban .mont{font-size:20px;font-weight:700;color:#ffc83c;margin-top:2px}
+.monban .mond{font-size:14px;font-weight:700;margin-top:2px}
+.monban .monn{font-size:12px;color:#d8cdaf;margin-top:6px;line-height:1.5}
+.plan.mon{border-color:#d4af37}
+.montag{display:inline-block;background:#141414;color:#ffc83c;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:6px}
+.plan .price .strike{display:block;text-decoration:line-through;color:var(--muted);font-weight:400;font-size:12px;text-align:right}
+.plan .price .monp{color:#9a7a1f}
+.contract{border-color:#d4af37}
+.monbox{background:#fffdf6;border-color:#d4af37}
+.termsbox{max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;font-size:12.5px;line-height:1.65}
+.tdoc p{margin:4px 0}.tdoc .tt{font-weight:700;font-size:15px;text-align:center}.tdoc .tv{color:var(--muted);font-size:11.5px;text-align:center;margin-bottom:6px}
+.tdoc .th{font-weight:700;margin:12px 0 4px;color:#7a5f16;border-bottom:1px solid #eadcb6;padding-bottom:2px}
+.tdoc .tli{padding-left:1.4em;text-indent:-1.4em}.tdoc .tn{display:inline-block;width:1.4em;text-indent:0}
+.tdoc .tsub{padding-left:2.4em;text-indent:-1em}.tdoc .tul{padding-left:1em;text-indent:-1em}
 .tsel{display:flex;gap:6px;margin-top:6px}.tsel select{flex:1;font-size:17px;min-height:46px;padding:8px}
 .tlabel{font-size:13px;font-weight:600;margin-top:8px}
 .snack{display:flex;gap:6px;align-items:center;margin-top:6px}.snack .tsel{flex:1;margin-top:0}.snack .sn{width:3.6em;font-size:13px;color:var(--muted)}
@@ -83,7 +99,7 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 .wnow .big{font-size:32px}.done{color:#1f7a3f;font-weight:700}
 </style></head><body><header>GLOW UP.</header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><main id="app"><p class="muted">読み込み中…</p></main>
 <script>
-/* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v9 と組み合わせて使います
+/* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v10 と組み合わせて使います
    LINEで本人確認 → 予約システム（Google Apps Script）の JSON API を fetch で呼びます。
    この画面から script.google.com へ移動することはありません。管理キーはここにはありません。 */
 var LIFF_ID = '2012605802-7XWt8wqw';
@@ -221,7 +237,7 @@ function eget(id){var el=document.getElementById(id);return el?el.value:null;}
 function collect(){
   var f=ES.f;
   [['e_name','name'],['e_tel','tel'],['e_mail','email'],['e_goal','goal'],['e_health','health'],['e_note','note']].forEach(function(p){var v=eget(p[0]);if(v!==null)f[p[1]]=v;});
-  var ag=document.getElementById('e_agree');if(ag)f.agree=ag.checked;
+  [['e_at','agreeTerms'],['e_ac','agreeContract'],['e_mon','agreeMonitor']].forEach(function(p){var el=document.getElementById(p[0]);if(el)f[p[1]]=el.checked;});
   var cs=document.querySelectorAll('input[name=e_cond]');for(var i=0;i<cs.length;i++){if(cs[i].checked)f.cond=cs[i].value;}
 }
 function selPlan(el){collect();ES.f.plan=el.getAttribute('data-id');render();}
@@ -235,12 +251,15 @@ function viewEnroll(){
   h+='<p class="muted">ご希望のプランを選んで、お名前と連絡先を入れてください。この画面でお支払いが発生することはありません。</p>';
   if(E.guest)h+='<div class="card ref" style="font-size:13px">すでにお申し込み済みの方、通っている方は、うーじさんから公式LINEで届いた<b>専用リンク</b>を1回開いてください。LINEと連携され、予約や体重の画面が使えるようになります。</div>';
   if(E.pending&&E.pending.length)h+='<div class="card ref" style="font-size:13px">お申し込み受付中：'+esc(E.pending.join('、'))+'<br>うーじさんからのご連絡をお待ちください。</div>';
+  h+=monitorBanner();
   var kinds=[];E.plans.forEach(function(p){if(kinds.indexOf(p.kind)<0)kinds.push(p.kind);});
   if(!E.plans.length)h+='<div class="card muted">今お申し込みできるプランがありません。公式LINEでご相談ください。</div>';
   kinds.forEach(function(k){
     h+='<h2>'+esc(kindLabel(k))+'</h2>';
     E.plans.filter(function(p){return p.kind===k;}).forEach(function(p){
-      h+='<div class="card plan'+(f.plan===p.id?' on':'')+'" data-id="'+esc(p.id)+'" onclick="selPlan(this)"><div class="row"><b><span class="pick"></span>'+esc(p.name)+'</b><span class="price">'+esc(p.priceLabel)+'</span></div>';
+      h+='<div class="card plan'+(f.plan===p.id?' on':'')+(p.monitor?' mon':'')+'" data-id="'+esc(p.id)+'" onclick="selPlan(this)">';
+      if(p.monitor)h+='<div class="montag">モニター価格'+(p.kind==='パーソナル'?'・入会金込み':'')+'</div>';
+      h+='<div class="row"><b><span class="pick"></span>'+esc(p.name)+'</b>'+planPriceHtml(p)+'</div>';
       if(p.desc)h+='<div class="pdesc">'+esc(p.desc)+'</div>';
       h+='</div>';
     });
@@ -258,13 +277,7 @@ function viewEnroll(){
   h+='<label>体の悩み・既往歴（任意）</label><textarea id="e_health" rows="2" placeholder="ケガや持病、通院中のことなど">'+esc(f.health||'')+'</textarea>';
   h+='<label>ご質問・ご要望（任意）</label><textarea id="e_note" rows="2" placeholder="カウンセリングの希望日時など">'+esc(f.note||'')+'</textarea>';
   h+='</div>';
-  h+='<h2>注意事項</h2><div class="card">';
-  if(E.termsUrl){h+='<p style="margin:0">お申し込みの前に、<a href="'+esc(E.termsUrl)+'" target="_blank">利用規約・注意事項</a>をお読みください。</p>';}
-  else{
-    h+='<ul class="terms"><li>この時点では、ご契約とお支払いは確定しません。うーじさんからご連絡し、カウンセリングで内容を確認してから確定します。</li>';
-    h+='<li>'+esc(E.payNote)+'</li><li>持病やケガのある方、通院中の方は、医師に相談のうえでお申し込みください。</li><li>食事の写真や体重などの記録は、サポートのためだけに使います。</li></ul>';
-  }
-  h+='<label class="chk"><input type="checkbox" id="e_agree"'+(f.agree?' checked':'')+'>注意事項を読み、同意します</label></div>';
+  h+='<p class="muted" style="font-size:13px">次の画面で、<b>申込内容確認書</b>と<b>利用規約</b>をご確認いただきます。</p>';
   h+='<div style="margin-top:12px"><button class="pri" onclick="eConfirm()">確認画面へ進む</button></div><div id="e_msg"></div>';
   return h;
 }
@@ -276,20 +289,29 @@ function eConfirm(){
   if(!String(f.name||'').trim())return eErr('お名前を入れてください。');
   if(!String(f.tel||'').trim())return eErr('電話番号を入れてください。');
   if(String(f.email||'').indexOf('@')<0&&String(f.email||'').indexOf('＠')<0)return eErr('メールアドレスを正しく入れてください。');
-  if(!f.agree)return eErr('注意事項への同意にチェックを入れてください。');
+  f.agreeTerms=false;f.agreeContract=false;f.agreeMonitor=false;
   ES.step='confirm';render();window.scrollTo(0,0);
 }
 function viewEnrollConfirm(){
-  var f=ES.f,p=ePlan(),h='<p class="muted">この内容でお申し込みします。よろしければ「この内容で申し込む」を押してください。</p>';
-  h+='<div class="card"><div class="kv">';
-  h+='<div>プラン</div><div><b>'+esc(p.name)+'</b></div><div>料金（税込）</div><div>'+esc(p.priceLabel)+'</div>';
-  if(p.desc)h+='<div>内容</div><div>'+esc(p.desc)+'</div>';
+  var f=ES.f,p=ePlan(),h='<p class="muted">内容をご確認ください。よろしければ、下の2つ'+(p.monitor?'（モニターの方は3つ）':'')+'にチェックを入れて「この内容で申し込む」を押してください。</p>';
+  h+='<h2>申込内容確認書</h2><div class="card contract"><div class="kv">';
+  h+='<div>お名前</div><div><b>'+esc(f.name)+'</b> 様</div>';
+  (p.contract||[]).forEach(function(r){var v=esc(r[1]);if(r[0]==='料金（税込）'){var i=r[1].indexOf('　通常 ');v=i>=0?'<b>'+esc(r[1].slice(0,i))+'</b><br><span class="muted" style="text-decoration:line-through">'+esc(r[1].slice(i+1))+'</span>':'<b>'+v+'</b>';}h+='<div>'+esc(r[0])+'</div><div>'+v+'</div>';});
   if(p.cont)h+='<div>継続の条件</div><div>'+esc(condLabel(f.cond))+'</div>';
-  h+='<div>お名前</div><div>'+esc(f.name)+'</div><div>電話番号</div><div>'+esc(f.tel)+'</div><div>メール</div><div>'+esc(f.email)+'</div>';
+  h+='<div>電話番号</div><div>'+esc(f.tel)+'</div><div>メール</div><div>'+esc(f.email)+'</div>';
   if(f.goal)h+='<div>目標</div><div class="pre">'+esc(f.goal)+'</div>';
   if(f.health)h+='<div>体の悩み</div><div class="pre">'+esc(f.health)+'</div>';
   if(f.note)h+='<div>ご質問</div><div class="pre">'+esc(f.note)+'</div>';
+  h+='<div>同意日時</div><div class="muted">送信した日時が記録されます</div>';
   h+='</div></div>';
+  if(p.monitor&&E.monitor){
+    h+='<div class="card monbox"><b>モニターのご協力について</b><p style="margin:4px 0 6px;font-size:13px">'+esc(E.monitor.note)+'写真や感想を使うときは、そのつど、使うものと掲載先をお見せして了承をいただきます。</p>';
+    h+='<label class="chk"><input type="checkbox" id="e_mon" onchange="eChk()"'+(f.agreeMonitor?' checked':'')+'>'+esc(E.monitor.agree)+'</label></div>';
+  }
+  h+='<h2>利用規約</h2><div class="card"><div class="termsbox" id="e_terms">'+termsHtml(E.terms)+'</div>';
+  if(E.termsUrl)h+='<p style="margin:8px 0 0;font-size:13px"><a href="'+esc(E.termsUrl)+'" target="_blank">利用規約をPDFで見る</a></p>';
+  h+='<label class="chk"><input type="checkbox" id="e_at" onchange="eChk()"'+(f.agreeTerms?' checked':'')+'>利用規約を読み、同意します</label>';
+  h+='<label class="chk"><input type="checkbox" id="e_ac" onchange="eChk()"'+(f.agreeContract?' checked':'')+'>契約内容を確認しました</label></div>';
   h+='<div class="card ref" style="font-size:13px">'+esc(E.payNote)+'</div>';
   h+='<div style="margin-top:12px"><button class="pri" id="e_go" onclick="eSubmit(this)">この内容で申し込む</button></div>';
   h+='<div style="margin-top:8px"><button class="ghost" style="width:100%" onclick="eBack()">修正する</button></div><div id="e_msg"></div>';
@@ -297,19 +319,23 @@ function viewEnrollConfirm(){
 }
 function eBack(){ES.step='form';render();window.scrollTo(0,0);}
 function eSubmit(el){
+  collect();var f=ES.f,p=ePlan();
+  if(p&&p.monitor&&!f.agreeMonitor)return eErr('モニター価格でのお申し込みには、モニターのご協力への同意が必要です。チェックを入れてください。');
+  if(!f.agreeTerms)return eErr('利用規約を読んで、同意のチェックを入れてください。');
+  if(!f.agreeContract)return eErr('申込内容確認書の内容を確認して、チェックを入れてください。');
   el.disabled=true;el.textContent='送信しています…';
-  var f=ES.f;
-  var payload={plan:f.plan,name:f.name||'',tel:f.tel||'',email:f.email||'',goal:f.goal||'',health:f.health||'',note:f.note||'',cond:f.cond||'',agree:!!f.agree};
+  var payload={plan:f.plan,name:f.name||'',tel:f.tel||'',email:f.email||'',goal:f.goal||'',health:f.health||'',note:f.note||'',cond:f.cond||'',
+    agreeTerms:!!f.agreeTerms,agreeContract:!!f.agreeContract,agreeMonitor:!!f.agreeMonitor,price:p?p.price:''};
   gas().withSuccessHandler(function(r){
     ES.step='done';ES.result=r;E=null;window.scrollTo(0,0);
     if(r.token)TOKEN=r.token;
     tab='申込み';START='申込み';load();
-  }).withFailureHandler(function(e){el.disabled=false;el.textContent='この内容で申し込む';eErr(e.message||e);}).api_enroll(TOKEN,TICKET,payload);
+  }).withFailureHandler(function(e){el.disabled=false;el.textContent='この内容で申し込む';var m=(e&&e.message)||String(e);if(m.indexOf('料金が変わりました')>=0){eRefresh(m);return;}eErr(m);}).api_enroll(TOKEN,TICKET,payload);
 }
 function viewEnrollDone(){
   var r=ES.result||{},h='';
   h+='<div class="card" style="text-align:center;padding:22px 14px"><div style="font-size:20px;font-weight:700;margin-bottom:6px">お申し込みありがとうございます！</div>';
-  h+='<div>'+esc(r.plan)+'（'+esc(r.priceLabel)+'）</div>';
+  h+='<div>'+esc(r.plan)+'（'+esc(r.priceLabel)+(r.monitor?'・モニター価格':'')+'）</div>';
   h+='<div class="muted">'+(r.already?'このプランのお申し込みは、すでに受け付けています。':'お申し込みを受け付けました。')+'</div></div>';
   h+='<h2>このあとの流れ</h2><div class="card"><ol style="margin:0;padding-left:20px">';
   h+='<li>'+esc(r.doneNote)+'</li><li>'+esc(r.payNote)+'</li>';
@@ -670,6 +696,38 @@ function saveTodayWeight(){
   var f={date:D.today,weight:val('hw_w'),fat:val('hw_f'),note:(todayW()||{}).note||''};
   gas().withSuccessHandler(function(r){D.weights=r.weights;editTW=false;alertMsg('記録しました。きょうもいい1日に！');render();window.scrollTo(0,0);})
   .withFailureHandler(function(e){b.disabled=false;b.textContent='きょうの体重を記録する';document.getElementById('hw_msg').innerHTML='<p class="err">'+esc(e.message)+'</p>';}).api_saveWeight(TOKEN,f);
+}
+
+function eChk(){collect();var m=document.getElementById('e_msg');if(m)m.innerHTML='';}
+function planPriceHtml(p){
+  if(!p.monitor)return '<span class="price">'+esc(p.priceLabel)+'</span>';
+  return '<span class="price"><span class="strike">'+esc(p.refLabel)+'</span><span class="monp">'+esc(p.priceLabel)+'</span></span>';
+}
+function monitorBanner(){
+  if(!E.monitor)return '';
+  return '<div class="monban"><div class="monk">MONITOR</div><div class="mont">モニター価格</div><div class="mond">'+esc(E.monitor.label)+'</div><div class="monn">'+esc(E.monitor.note)+'</div></div>';
+}
+function mdb(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
+function termsHtml(T){
+  if(!T)return '';
+  var h='<div class="tdoc"><div class="tt">'+esc(T.title)+'</div><div class="tv">'+esc(T.version)+'</div>';
+  (T.intro||[]).forEach(function(x){h+='<p>'+mdb(x)+'</p>';});
+  (T.sections||[]).forEach(function(sec){
+    h+='<div class="th">'+esc(sec.h)+'</div>';var n=0;
+    (sec.b||[]).forEach(function(b){
+      if(b.t==='li'){n++;h+='<p class="tli"><span class="tn">'+n+'.</span>'+mdb(b.s)+'</p>';}
+      else if(b.t==='sub'){h+='<p class="tsub">・'+mdb(b.s)+'</p>';}
+      else if(b.t==='ul'){h+='<p class="tul">・'+mdb(b.s)+'</p>';}
+      else{h+='<p>'+mdb(b.s)+'</p>';}
+    });
+  });
+  (T.end||[]).forEach(function(x){h+='<p class="tv" style="text-align:right">'+esc(x)+'</p>';});
+  return h+'</div>';
+}
+/* 12/31の夜など、確認中に料金が切りかわったときは、最新の料金で確認画面を出しなおします */
+function eRefresh(msg){
+  gas().withSuccessHandler(function(r){E=r;var f=ES.f;f.agreeTerms=false;f.agreeContract=false;f.agreeMonitor=false;if(!ePlan())ES.step='form';render();eErr(msg);window.scrollTo(0,0);})
+  .withFailureHandler(fail).api_enrollInfo(TOKEN,TICKET);
 }
 
 function alertMsg(m,cls){document.getElementById('flash').innerHTML='<div class="card '+(cls||'ok')+'">'+esc(m)+'</div>';window.scrollTo(0,0);}
