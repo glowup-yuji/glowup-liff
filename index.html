@@ -97,34 +97,120 @@ input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid var(
 .wcard{border-color:var(--gold)}.wcard h2{margin-top:0}
 .bigin{font-size:26px;font-weight:700;text-align:center;min-height:58px}
 .wnow .big{font-size:32px}.done{color:#1f7a3f;font-weight:700}
+/* v14 履歴画面＋マイページ上部の固定 */
+header{position:sticky;top:0;z-index:30;padding:8px 14px 6px}
+header .who{font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;letter-spacing:0;font-size:12px;color:#cbb98a;margin-top:4px;font-weight:600}
+#topbar{position:sticky;top:0;z-index:30;background:var(--bg)}
+#tabsbar{background:var(--bg);padding:4px 16px 0}
+#tabsbar .tabs{margin:0}
+#tabsbar .subtabs{display:flex;gap:5px;overflow-x:auto;margin:4px 0 0;padding:0 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#tabsbar .subtabs::-webkit-scrollbar{display:none}
+#tabsbar .subtabs button{flex:1;min-width:3.4em;border-radius:999px;padding:7px 0;font-size:12.5px}
+.hv-hero{background:#0b0a08;color:#f6f1e8;border-radius:16px;padding:8px 14px;margin-bottom:6px;border:1px solid #d4af37}
+.hv-hero .k{font-size:11px;letter-spacing:.28em;color:#d4af37;font-weight:700}
+.hv-hero .now{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.hv-hero .kg{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.hv-hero .unit{font-size:18px;font-weight:700;color:#d4af37}
+.hv-hero .fat{margin-left:auto;text-align:right;font-size:13px;color:#cbb98a}
+.hv-hero .fat b{display:block;color:#fff;font-size:22px;font-weight:800;line-height:1.15}
+.hv-chg{display:flex;gap:8px;margin-top:6px}
+.hv-chg>div{flex:1;background:#181511;border-radius:10px;padding:6px 6px 5px;text-align:center}
+.hv-chg .l{font-size:11px;color:#cbb98a}
+.hv-chg .v{font-size:18px;font-weight:800;margin-top:2px;font-variant-numeric:tabular-nums}
+.hv-chg .v.good{color:#8fd19a}
+.hv-chg .v.bad{color:#e8a8a3}
+.hv-chg .s{font-size:11px;color:#8a8070;margin-top:1px}
+.hv-fastsum{padding:6px 10px;margin-bottom:6px}
+.hv-fastsum h2{font-size:13px;margin:0 0 6px;color:var(--gold);letter-spacing:.08em;font-weight:700}
+.hv-fastrow{display:flex;gap:8px}
+.hv-fastrow .box{flex:1;background:#faf6ea;border-radius:12px;padding:8px 8px 9px;text-align:center}
+.hv-fastrow .box.ok{background:#e8f6ec}
+.hv-fastrow .l{font-size:11px;color:var(--muted);font-weight:700}
+.hv-fastrow .v{font-size:18px;font-weight:800;line-height:1.25;margin-top:1px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.hv-fastrow .box.ok .v{color:#1f7a3f}
+.hv-fastrow .s{font-size:13px;font-weight:700;color:var(--muted)}
+.hv-mealrow{display:flex;align-items:center;gap:10px;margin-top:6px;background:#faf6ea;border-radius:12px;padding:6px 10px}
+.hv-mealrow .meal-big{flex:none;min-width:92px}
+.hv-mealrow .l{font-size:11px;color:var(--muted);font-weight:700}
+.hv-mealrow .v{font-size:24px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.hv-mealrow .u{font-size:13px;font-weight:700;margin-left:1px}
+.hv-mealrow .meal-br{flex:1;font-size:13px;line-height:1.45}
+.hv-mealrow .meal-br b{font-weight:800;font-variant-numeric:tabular-nums}
+.hv-mealrow .sub{font-size:11px;color:var(--muted)}
+.hv-mealrow .avg{color:var(--muted);font-size:12px}
+.hv-dots{display:flex;gap:4px;margin-top:5px}
+.hv-dots span{flex:1;text-align:center;font-size:10px;font-weight:700;color:var(--muted);line-height:1.2}
+.hv-dots span i{display:block;width:10px;height:10px;border-radius:50%;margin:0 auto 3px;background:#ddd3bb}
+.hv-dots span.on i{background:#1f7a3f}
+.hv-dots span .n{display:block;font-size:11px;font-weight:800;color:var(--ink);margin-top:1px;font-variant-numeric:tabular-nums;line-height:1}
+.hv-charthead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.hv-charthead h2{font-size:13px;margin:0;color:var(--gold);letter-spacing:.08em;font-weight:700}
 .hv-seg{display:flex;gap:6px;margin:0 0 10px}.hv-seg button{flex:1;background:#fff;border:1px solid var(--line);padding:10px 4px;font-weight:700}
 .hv-seg button.on{background:#0b0a08;color:#d4af37;border-color:#0b0a08}
+.hv-seg.mini{margin:0;flex:none;width:58%;max-width:200px}
+.hv-seg.mini button{padding:5px 2px;font-size:11.5px;border-radius:8px;min-height:0}
 .hv-h{font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:6px}
 .hv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
 .hv-st{background:#faf6ea;border:1px solid #eee3c4;border-radius:10px;text-align:center;padding:8px 4px}
 .hv-st .muted{font-size:11px}.hv-big{font-size:20px;font-weight:700;line-height:1.3}
 .hv-st.down .hv-big{color:#1f7a3f}.hv-st.up .hv-big{color:#9b2c25}
 .hv-cl{font-size:11.5px;color:var(--muted);margin-top:4px}
-.hv-chart{width:100%;height:auto;display:block;margin:2px 0 4px}
+.hv-chart{width:100%;height:auto;display:block;margin:2px 0 4px;max-height:200px}
 .hv-nochart{padding:8px 0}
 .hv-list{padding:4px 12px}
 .hv-day,.hv-wk{padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}.hv-day:last-child,.hv-wk:last-child{border-bottom:0}
-.hv-day.today{background:#fffdf6}
-.hv-dh{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}.hv-dh .hv-w,.hv-dh .hv-wchg{margin-left:auto;white-space:nowrap}
+.hv-daysheet{padding:0;overflow:hidden}
+.hv-daysheet .hv-day{padding:14px;border-bottom:1px solid var(--line)}
+.hv-daysheet .hv-day:last-child{border-bottom:0}
+.hv-day.today{background:linear-gradient(#fffdf6,#fff);border-color:var(--gold)}
+.hv-dh{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
+.hv-dh .date{font-size:16px;font-weight:800}
+.hv-dh .wnow{margin-left:auto;text-align:right;white-space:nowrap}
+.hv-dh .wnow b{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.hv-dh .wnow span{font-size:12px;color:var(--muted);margin-left:2px}
+.hv-dh .wnow .fatn{display:block;font-size:12.5px;color:var(--muted);font-weight:600}
+.hv-pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#f6eedb;color:#7a5f17;vertical-align:2px;margin-left:4px}
+.hv-pill.now{background:#0b0a08;color:#d4af37}
+.hv-fastbar{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;background:#f4f0e6;border-radius:12px;padding:8px 11px;margin:0 0 10px}
+.hv-fastbar.good{background:#e8f6ec}
+.hv-fastbar .ft{font-size:13px;font-weight:700}
+.hv-fastbar.good .ft{color:#1f7a3f}
+.hv-fastbar .ft b{font-size:18px;font-weight:800;margin-left:2px;font-variant-numeric:tabular-nums}
+.hv-fastbar .fr{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hv-fastbar.miss{background:#f6f3ea}
+.hv-fastbar.miss .ft{color:var(--muted);font-weight:700;font-size:13px}
+.hv-meals4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.hv-slot{background:#faf6ea;border-radius:12px;padding:8px 6px;text-align:center;min-height:86px}
+.hv-slot .n{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em}
+.hv-slot .t{font-size:15px;font-weight:800;margin:2px 0 6px;font-variant-numeric:tabular-nums}
+.hv-slot .t.off{font-weight:700;font-size:11px;color:var(--muted);letter-spacing:0}
+.hv-slot img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;display:block;background:#eee}
+.hv-slot a{display:block}
+.hv-ph{width:100%;aspect-ratio:1;border-radius:8px;background:#efe8d6;display:flex;align-items:center;justify-content:center;color:#9a907c;font-size:10px;font-weight:700}
+.hv-slot .cap{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.25;min-height:1.25em}
+.hv-slot .from{display:block;font-size:9px;color:#7a5f17;font-weight:700;margin-top:2px;letter-spacing:.04em}
+.hv-dnote{font-size:13px;color:var(--muted);margin-top:8px}
+.hv-sec{font-size:13px;margin:18px 0 8px;color:var(--gold);letter-spacing:.08em;font-weight:700}
+.hv-week{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.hv-week .box{background:#faf6ea;border-radius:12px;padding:10px 8px;text-align:center}
+.hv-week .box .l{font-size:11px;color:var(--muted)}
+.hv-week .box .v{font-size:20px;font-weight:800;line-height:1.2}
+.hv-week .box .v.good{color:#1f7a3f}
+.hv-week .box .v.bad{color:#9b2c25}
+.hv-week .box .s{font-size:11px;color:var(--muted)}
 .hv-w b{font-size:16px}
-.hv-wchg{font-weight:700}.hv-wchg.down{color:#1f7a3f}.hv-wchg.up{color:#9b2c25}
-.hv-meals{margin-top:3px}.hv-fw{color:#6b655b;font-size:12.5px}
-.hv-sub{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-top:2px}
-.hv-fast{font-weight:700;white-space:nowrap}.hv-fast.good{color:#1f7a3f}
+.hv-wchg{font-weight:700;margin-left:auto;white-space:nowrap}.hv-wchg.down{color:#1f7a3f}.hv-wchg.up{color:#9b2c25}
 .hv-wg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:6px 0 4px;text-align:center}
 .hv-wg div{background:#faf6ea;border-radius:8px;padding:5px 2px;line-height:1.3}.hv-wg .muted{display:block;font-size:11px}.hv-wg b{font-size:16px}
 .hv-more{width:100%;margin:2px 0 6px;font-weight:700}
-.hv-note{font-size:12px}
+.hv-note{font-size:12px;margin:8px 2px 0;line-height:1.55}
+
+.hv #chart{padding:10px 12px;margin-bottom:8px}
 .ovw{overflow-x:auto}.ovt{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
 .ovt th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:4px 5px;line-height:1.3;border-bottom:1px solid var(--line)}
 .ovt td{text-align:right;padding:7px 5px;border-bottom:1px solid var(--line)}.ovt th:first-child,.ovt td:first-child{text-align:left}
 .ovt tr.ovr{cursor:pointer}.ovt tr.ovr:hover{background:#fffdf6}.ovt .down{color:#1f7a3f;font-weight:700}.ovt .up{color:#9b2c25;font-weight:700}.ovt .old{color:#9b2c25}
-</style></head><body><header>GLOW UP.</header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><main id="app"><p class="muted">読み込み中…</p></main>
+</style></head><body><div id="topbar"><header>GLOW UP.<div class="who" id="who"></div></header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><div id="tabsbar"></div></div><main id="app"><p class="muted">読み込み中…</p></main>
 <script>
 /* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v11 と組み合わせて使います
    LINEで本人確認 → 予約システム（Google Apps Script）の JSON API を fetch で呼びます。
@@ -189,8 +275,12 @@ function tabs(){
   return h;
 }
 function render(){
-  if(!TOKEN){document.getElementById('app').innerHTML='<h1>入会のお申し込み</h1>'+viewEnroll();return;}
-  var h='<h1>'+esc(D.name)+' 様</h1>'+tabs();
+  var who=document.getElementById('who');
+  var tb=document.getElementById('tabsbar');
+  if(!TOKEN){if(who)who.textContent='';if(tb)tb.innerHTML='';document.getElementById('app').innerHTML='<h1>入会のお申し込み</h1>'+viewEnroll();return;}
+  if(who)who.textContent=(D&&D.name)?(D.name+' 様'):'';
+  if(tb)tb.innerHTML=tabs();
+  var h='';
   if(tab==='申込み') h+='<p><button class="ghost" onclick="backHome()">← マイページにもどる</button></p>'+viewEnroll();
   else if(tab==='目標') h+=viewGoal();
   else if(tab==='体重') h+=viewWeight();
@@ -803,30 +893,115 @@ function hvInRange(H){
 function hvSetRange(r){HV.range=r;render();}
 function hvMore(){HV.n+=14;render();}
 function hvMoreW(){HV.wn+=8;render();}
+/* 履歴タブの画面（お客様マイページ・管理画面のお客様詳細で共用） */
+function hvHero(H){
+  var s=H.series||[];
+  if(!s.length) return '<div class="hv-hero"><div class="k">いまの体重</div><div style="color:#cbb98a;margin-top:8px;font-size:13px">体重の記録がまだありません。</div></div>';
+  var a=s[0],b=s[s.length-1],ch=s.length>1?Number(b.weight)-Number(a.weight):null,fat=hvNum(b.fat),goal=hvNum(H.goal);
+  var h='<div class="hv-hero"><div class="k">いまの体重</div><div class="now"><div class="kg">'+esc(b.weight)+'</div><div class="unit">kg</div>';
+  if(fat!=null)h+='<div class="fat">体脂肪率<b>'+fat+'%</b></div>';
+  h+='</div><div class="hv-chg">';
+  h+='<div><div class="l">開始（'+esc(hvMD(a.date))+'）</div><div class="v">'+esc(a.weight)+'</div><div class="s">kg</div></div>';
+  h+='<div><div class="l">開始から</div><div class="v'+(ch!=null&&ch<0?' good':(ch>0?' bad':''))+'">'+(ch!=null?hvSign(ch):'—')+'</div><div class="s">kg</div></div>';
+  if(goal!=null){
+    var remain=hvR1(Number(b.weight)-goal);
+    h+='<div><div class="l">目標まで</div><div class="v'+(remain<=0?' good':'')+'">'+(remain<=0?'達成':remain)+'</div><div class="s">kg</div></div>';
+  }else h+='<div><div class="l">目標まで</div><div class="v">—</div><div class="s">目標未設定</div></div>';
+  return h+'</div></div>';
+}
+function hvRecent7(H){
+  var r=H.recent7;if(!r)return '';
+  var h='<div class="card hv-fastsum"><h2>'+esc(r.title||'直近7日')+'</h2>';
+  h+='<div class="hv-fastrow">';
+  h+='<div class="box"><div class="l">ファスティング平均</div><div class="v">'+(r.fastAvgLabel?esc(r.fastAvgLabel):'—')+'</div></div>';
+  h+='<div class="box'+(r.days16?' ok':'')+'"><div class="l">'+(r.goalH||16)+'時間以上</div><div class="v">'+(r.known?r.days16+'日<span class="s"> / '+r.daysTotal+'日</span>':'—')+'</div></div>';
+  h+='</div>';
+  h+='<div class="hv-mealrow"><div class="meal-big"><div class="l">食事の回数</div><div class="v">'+r.mealTotal+'<span class="u">回</span></div></div>';
+  h+='<div class="meal-br"><div>食事 <b>'+r.mealMain+'</b>回<span class="sub">（朝・昼・夕）</span></div><div>間食 <b>'+r.mealSnack+'</b>回</div><div class="avg">1日平均 <b>'+r.mealAvg+'</b>回</div></div></div>';
+  if(r.dots&&r.dots.length){
+    h+='<div class="hv-dots" aria-label="直近7日。緑は16時間以上。数字は食事と間食の合計回数">';
+    r.dots.forEach(function(d){h+='<span class="'+(d.on?'on':'')+'"><i></i>'+esc(d.w)+'<div class="n">'+d.n+'</div></span>';});
+    h+='</div>';
+  }
+  return h+'</div>';
+}
+function hvRecent7Boxes(H){
+  var r=H.recent7;if(!r)return '';
+  var ch=r.wChange,chTxt=ch==null?'—':hvSign(ch)+'kg';
+  var chSub=(r.wFirst!=null&&r.wLast!=null)?(r.wFirst+' → '+r.wLast):'';
+  var h='<div class="hv-sec" id="weeks">直近7日のまとめ'+(r.rangeLabel?'（'+esc(r.rangeLabel)+'）':'')+'</div>';
+  h+='<div class="hv-week">';
+  h+='<div class="box"><div class="l">体重の変化</div><div class="v'+(ch!=null&&ch<0?' good':(ch>0?' bad':''))+'">'+chTxt+'</div><div class="s">'+esc(chSub)+'</div></div>';
+  h+='<div class="box"><div class="l">いちばん長い</div><div class="v'+(r.longestLabel?' good':'')+'">'+(r.longestLabel?esc(r.longestLabel):'—')+'</div><div class="s">'+esc(r.longestDate||'')+'</div></div>';
+  h+='<div class="box"><div class="l">食事</div><div class="v">'+r.mealMain+'<span style="font-size:13px;font-weight:700">回</span></div><div class="s">間食 '+r.mealSnack+'回</div></div>';
+  h+='<div class="box"><div class="l">'+(r.goalH||16)+'時間以上</div><div class="v'+(r.days16?' good':'')+'">'+(r.known?r.days16+'<span style="font-size:13px;font-weight:700">日</span>':'—')+'</div><div class="s">'+(r.fastAvgLabel?'平均 '+esc(r.fastAvgLabel):'')+'</div></div>';
+  return h+'</div>';
+}
+function hvImgErr(el){el.outerHTML='<div class="hv-ph">写真なし</div>';}
+function hvThumb(p){
+  if(!p||!p.thumb)return '';
+  var img='<img src="'+esc(p.thumb)+'" alt="'+esc(p.note||'食事写真')+'" onerror="hvImgErr(this)">';
+  var href=p.view||p.url||'';
+  return href?'<a href="'+esc(href)+'" target="_blank" rel="noopener">'+img+'</a>':img;
+}
+function hvSlot(name,sl){
+  sl=sl||{s:'',t:'',photos:[],fromLine:false,times:[]};
+  var h='<div class="hv-slot"><div class="n">'+esc(name)+'</div>';
+  if(name==='間食'){
+    var times=(sl.times||[]).filter(function(t){return t;});
+    var n=(sl.times||[]).length;
+    if(!n)h+='<div class="t off">なし</div><div class="hv-ph">—</div>';
+    else{
+      h+='<div class="t">'+(times[0]?esc(times[0]):(n+'回'))+'</div>';
+      var ph=(sl.photos||[]).filter(function(p){return p.thumb;})[0];
+      if(ph)h+=hvThumb(ph);
+      else h+='<div class="hv-ph">'+(n===1?'1回':n+'回')+'</div>';
+      var cap=sl.photos&&sl.photos[0]&&sl.photos[0].note?sl.photos[0].note:'';
+      if(times.length>1)cap=(cap?cap+'・':'')+times.join(' / ');
+      if(cap||sl.fromLine)h+='<div class="cap">'+esc(cap)+(sl.fromLine?'<span class="from">LINE</span>':'')+'</div>';
+    }
+  }else if(sl.s==='no'){
+    h+='<div class="t off">なし</div><div class="hv-ph">—</div>';
+  }else if(sl.s==='yes'){
+    h+='<div class="t">'+(sl.t?esc(sl.t):'食べた')+'</div>';
+    var thumbs=(sl.photos||[]).filter(function(p){return p.thumb;});
+    if(thumbs[0])h+=hvThumb(thumbs[0]);
+    else h+='<div class="hv-ph">写真なし</div>';
+    var cap=sl.note||(sl.photos&&sl.photos[0]&&sl.photos[0].note)||'';
+    if(cap||sl.fromLine||thumbs.length>1)h+='<div class="cap">'+esc(cap)+(thumbs.length>1?' ・他'+(thumbs.length-1)+'枚':'')+(sl.fromLine?'<span class="from">LINE</span>':'')+'</div>';
+  }else{
+    h+='<div class="t off">—</div><div class="hv-ph">—</div>';
+  }
+  return h+'</div>';
+}
 function hvChart(pts,key,label,unit,goal){
   pts=pts.filter(function(e){return hvNum(e[key])!=null;});
   if(pts.length<2)return '<div class="hv-nochart muted">'+esc(label)+'：グラフは、2日分の記録がたまると出ます。</div>';
   var vs=pts.map(function(e){return Number(e[key]);});
   var min=Math.min.apply(null,vs),max=Math.max.apply(null,vs);
+  var g=hvNum(goal);
+  if(g!=null){min=Math.min(min,g);max=Math.max(max,g);}
   var pad=Math.max((max-min)*0.15,key==='weight'?0.5:0.3);min=hvR1(min-pad);max=hvR1(max+pad);
-  var W=340,H=150,T=12,B=22,L=40,R=12;
+  if(max<=min)max=min+1;
+  var W=340,H=154,T=16,B=26,L=44,R=12;
   var t0=new Date(pts[0].date.replace(/-/g,'/')).getTime(),t1=new Date(pts[pts.length-1].date.replace(/-/g,'/')).getTime();
   function sx(e){var t=new Date(e.date.replace(/-/g,'/')).getTime();return L+(t1===t0?0:(t-t0)/(t1-t0))*(W-L-R);}
   function sy(v){return T+(max-v)/(max-min)*(H-T-B);}
-  var h='<div class="hv-cl">'+esc(label)+'</div><svg class="hv-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+'の推移">';
-  for(var g=0;g<3;g++){var v=hvR1(max-(max-min)*g/2),y=sy(v).toFixed(1);h+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#ece5d3"/><text x="'+(L-5)+'" y="'+(+y+3.5)+'" font-size="10" fill="#6b655b" text-anchor="end">'+v+'</text>';}
-  if(goal!==''&&goal!=null&&goal>=min&&goal<=max){var gy=sy(goal).toFixed(1);h+='<line x1="'+L+'" y1="'+gy+'" x2="'+(W-R)+'" y2="'+gy+'" stroke="#1f7a3f" stroke-dasharray="4 3"/><text x="'+(W-R)+'" y="'+(gy-3)+'" font-size="10" fill="#1f7a3f" text-anchor="end">目標 '+goal+unit+'</text>';}
+  var h='<svg class="hv-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(label)+'の推移">';
+  for(var i=0;i<4;i++){var v=hvR1(max-(max-min)*i/3),y=sy(v).toFixed(1);h+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#ece5d3"/><text x="'+(L-6)+'" y="'+(+y+3.5)+'" font-size="11" fill="#6b655b" text-anchor="end">'+v+'</text>';}
+  if(g!=null){var gy=sy(g).toFixed(1);h+='<line x1="'+L+'" y1="'+gy+'" x2="'+(W-R)+'" y2="'+gy+'" stroke="#1f7a3f" stroke-dasharray="5 4" stroke-width="1.6"/><text x="'+(W-R)+'" y="'+(gy-4)+'" font-size="11" font-weight="700" fill="#1f7a3f" text-anchor="end">目標 '+g+unit+'</text>';}
   var d=pts.map(function(e,i){return (i?'L':'M')+sx(e).toFixed(1)+','+sy(Number(e[key])).toFixed(1);}).join(' ');
   var area=d+' L'+sx(pts[pts.length-1]).toFixed(1)+','+(H-B)+' L'+sx(pts[0]).toFixed(1)+','+(H-B)+' Z';
-  h+='<path d="'+area+'" fill="#b08d2e" fill-opacity=".08"/><path d="'+d+'" fill="none" stroke="#b08d2e" stroke-width="2.2" stroke-linejoin="round"/>';
-  if(pts.length<=45)pts.forEach(function(e){h+='<circle cx="'+sx(e).toFixed(1)+'" cy="'+sy(Number(e[key])).toFixed(1)+'" r="2.6" fill="#b08d2e"/>';});
+  h+='<path d="'+area+'" fill="#b08d2e" fill-opacity=".10"/><path d="'+d+'" fill="none" stroke="#b08d2e" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>';
+  if(pts.length<=45)pts.forEach(function(e,i){if(i===0||i===pts.length-1)return;h+='<circle cx="'+sx(e).toFixed(1)+'" cy="'+sy(Number(e[key])).toFixed(1)+'" r="2.6" fill="#b08d2e"/>';});
+  var first=pts[0];h+='<circle cx="'+sx(first).toFixed(1)+'" cy="'+sy(Number(first[key])).toFixed(1)+'" r="3.4" fill="#b08d2e"/>';
   var le=pts[pts.length-1],lx=sx(le),ly=sy(Number(le[key]));
-  h+='<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="4.5" fill="#0b0a08" stroke="#d4af37" stroke-width="2"/>';
-  h+='<text x="'+Math.min(lx,W-R).toFixed(1)+'" y="'+Math.max(ly-8,T+2).toFixed(1)+'" font-size="11" font-weight="700" fill="#0b0a08" stroke="#fff" stroke-width="3" paint-order="stroke" text-anchor="end">'+le[key]+unit+'</text>';
+  h+='<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="5.5" fill="#0b0a08" stroke="#d4af37" stroke-width="2.2"/>';
+  h+='<text x="'+Math.min(lx,W-R).toFixed(1)+'" y="'+Math.max(ly-10,T+8).toFixed(1)+'" font-size="13" font-weight="800" fill="#0b0a08" stroke="#fff" stroke-width="4" paint-order="stroke" text-anchor="end">'+le[key]+unit+'</text>';
   var mid=pts[Math.floor((pts.length-1)/2)];
-  h+='<text x="'+L+'" y="'+(H-6)+'" font-size="10" fill="#6b655b">'+esc(hvMD(pts[0].date))+'</text>';
-  if(pts.length>2)h+='<text x="'+sx(mid).toFixed(1)+'" y="'+(H-6)+'" font-size="10" fill="#6b655b" text-anchor="middle">'+esc(hvMD(mid.date))+'</text>';
-  h+='<text x="'+(W-R)+'" y="'+(H-6)+'" font-size="10" fill="#6b655b" text-anchor="end">'+esc(hvMD(le.date))+'</text>';
+  h+='<text x="'+L+'" y="'+(H-8)+'" font-size="11" fill="#6b655b">'+esc(hvMD(pts[0].date))+'</text>';
+  if(pts.length>2)h+='<text x="'+sx(mid).toFixed(1)+'" y="'+(H-8)+'" font-size="11" fill="#6b655b" text-anchor="middle">'+esc(hvMD(mid.date))+'</text>';
+  h+='<text x="'+(W-R)+'" y="'+(H-8)+'" font-size="11" fill="#6b655b" text-anchor="end">'+esc(hvMD(le.date))+'</text>';
   return h+'</svg>';
 }
 function hvStat(title,val,sub,cls){return '<div class="hv-st'+(cls?' '+cls:'')+'"><div class="muted">'+title+'</div><div class="hv-big">'+val+'</div><div class="muted">'+sub+'</div></div>';}
@@ -836,17 +1011,15 @@ function hvRangeStats(pts,key,unit){
   var a=pts[0],b=pts[pts.length-1],ch=pts.length>1?Number(b[key])-Number(a[key]):null;
   return '<div class="hv-stats">'+hvStat('はじめ（'+esc(hvMD(a.date))+'）',a[key],unit)+hvStat('いま（'+esc(hvMD(b.date))+'）',b[key],unit)+hvStat('変化',hvSign(ch),unit,ch!=null&&ch<0?'down':(ch>0?'up':''))+'</div>';
 }
-function hvMealMark(x){if(!x||!x.s)return '<span class="muted">—</span>';if(x.s==='no')return '<span class="hv-fw">ファスティング</span>';return x.t?esc(x.t):'食べた';}
-function hvFast(v,goalH){if(v==null)return '';return '<span class="hv-fast'+(v>=goalH?' good':'')+'">ファスティング '+hvR1(v)+'時間</span>';}
 function hvWeeks(H){
-  var ws=H.weeks||[];if(!ws.length)return '<div class="card muted">まだ記録がありません。</div>';
-  var h='<div class="card hv-list">';
+  var ws=H.weeks||[];if(!ws.length)return '';
+  var h='<div class="hv-sec">週ごとのまとめ</div><div class="card hv-list">';
   ws.slice(0,HV.wn).forEach(function(w){
     h+='<div class="hv-wk"><div class="hv-dh"><b>'+esc(w.label)+'</b>'+(w.isNow?' <span class="tag">今週</span>':'')+'<span class="hv-wchg'+(w.wChange!=null&&w.wChange<0?' down':(w.wChange>0?' up':''))+'">'+(w.wChange!=null?'体重 '+hvSign(w.wChange)+'kg':(w.wLast!=null?'体重 '+w.wLast+'kg':''))+'</span></div>';
     h+='<div class="hv-wg"><div><span class="muted">食事</span><b>'+w.count+'</b>回'+(w.snack?'<span class="muted">（間食'+w.snack+'）</span>':'')+'</div>';
     h+='<div><span class="muted">平均</span><b>'+(w.avg!=null?hvR1(w.avg):'—')+'</b>時間</div>';
     h+='<div><span class="muted">合計</span><b>'+(w.total!=null?hvR1(w.total):'—')+'</b>時間</div>';
-    h+='<div><span class="muted">'+H.goalH+'h以上</span><b>'+w.days16+'</b>日</div></div>';
+    h+='<div><span class="muted">'+(H.goalH||16)+'h以上</span><b>'+w.days16+'</b>日</div></div>';
     h+='<div class="muted">記録 '+w.recDays+'日'+(w.max!=null?'・いちばん長い '+hvR1(w.max)+'時間':'')+'</div></div>';
   });
   h+='</div>';
@@ -855,18 +1028,23 @@ function hvWeeks(H){
 }
 function hvDays(H){
   var ds=H.days||[];if(!ds.length)return '<div class="card muted">まだ記録がありません。</div>';
-  var h='<div class="card hv-list">';
+  var h='<div class="card hv-daysheet" id="days">';
   ds.slice(0,HV.n).forEach(function(x){
-    var r=x.rec;
-    h+='<div class="hv-day'+(x.isToday?' today':'')+'"><div class="hv-dh"><b>'+esc(x.label)+'</b>'+(x.isToday?' <span class="tag">きょう</span>':'');
-    h+='<span class="hv-w">'+(x.weight!==''?'<b>'+x.weight+'</b>kg':'<span class="muted">体重 —</span>')+(x.fat!==''?'　<b>'+x.fat+'</b>%':'')+'</span></div>';
-    if(r){
-      var sn=(r.snacks||[]).length;
-      h+='<div class="hv-meals">朝 '+hvMealMark(r.b)+'　昼 '+hvMealMark(r.l)+'　夕 '+hvMealMark(r.d)+(sn?'　間食 '+sn+'回':'')+'</div>';
-      h+='<div class="hv-sub">'+(x.fast!=null?hvFast(x.fast,H.goalH):'<span class="muted">ファスティング —</span>')+'<span class="muted">食事 '+x.count+'回</span></div>';
-      if(r.note)h+='<div class="muted">'+esc(r.note)+'</div>';
-    }else h+='<div class="muted">食事の記録なし</div>';
-    if(x.wnote)h+='<div class="muted">体重メモ：'+esc(x.wnote)+'</div>';
+    var sl=x.slots||{};
+    h+='<div class="hv-day'+(x.isToday?' today':'')+'">';
+    h+='<div class="hv-dh"><div><div class="date">'+esc(x.label||hvMD(x.date))+(x.isToday?'<span class="hv-pill now">きょう</span>':'')+'</div></div>';
+    h+='<div class="wnow">'+(x.weight!==''?'<b>'+x.weight+'</b><span>kg</span>':'<span class="muted">体重 —</span>')+(x.fat!==''?'<span class="fatn">体脂肪 '+x.fat+'%</span>':'')+'</div></div>';
+    if(x.fastLabel){
+      h+='<div class="hv-fastbar'+(x.fastMins!=null&&x.fastMins>=(H.goalH||16)*60?' good':'')+'"><div class="ft">ファスティング <b>'+esc(x.fastLabel)+'</b></div>';
+      h+='<div class="fr">'+esc(x.fastFromLabel||'')+(x.fastTo?' → '+esc(x.fastTo):'')+'</div></div>';
+    }else if(x.rec||(x.mealTotal)){
+      h+='<div class="hv-fastbar miss"><div class="ft">ファスティング —</div><div class="fr">時間の記録がそろった日だけ出ます</div></div>';
+    }
+    if(x.slots||x.rec){
+      h+='<div class="hv-meals4">'+hvSlot('朝',sl['朝']||(x.rec&&{s:x.rec.b&&x.rec.b.s,t:x.rec.b&&x.rec.b.t}))+hvSlot('昼',sl['昼']||(x.rec&&{s:x.rec.l&&x.rec.l.s,t:x.rec.l&&x.rec.l.t}))+hvSlot('夕',sl['夕']||(x.rec&&{s:x.rec.d&&x.rec.d.s,t:x.rec.d&&x.rec.d.t}))+hvSlot('間食',sl['間食']||(x.rec&&{times:x.rec.snacks||[]}))+'</div>';
+    }else h+='<div class="muted" style="margin-top:6px">食事の記録なし</div>';
+    if(x.rec&&x.rec.note)h+='<div class="hv-dnote">'+esc(x.rec.note)+'</div>';
+    if(x.wnote)h+='<div class="hv-dnote">体重メモ：'+esc(x.wnote)+'</div>';
     h+='</div>';
   });
   h+='</div>';
@@ -874,20 +1052,20 @@ function hvDays(H){
   return h;
 }
 function histView(H){
-  var h='<div class="hv">';
-  h+='<div class="hv-seg">';[['1m','1ヶ月'],['3m','3ヶ月'],['all','全期間']].forEach(function(r){h+='<button class="'+(HV.range===r[0]?'on':'')+'" onclick="hvSetRange(\''+r[0]+'\')">'+r[1]+'</button>';});h+='</div>';
+  var h='<div class="hv">'+hvHero(H)+hvRecent7(H);
   var pts=hvInRange(H);
-  h+='<div class="card">';
+  h+='<div class="card" id="chart"><div class="hv-charthead"><h2>体重の流れ</h2><div class="hv-seg mini">';
+  [['1m','1ヶ月'],['3m','3ヶ月'],['all','全期間']].forEach(function(r){h+='<button class="'+(HV.range===r[0]?'on':'')+'" onclick="hvSetRange(\''+r[0]+'\')">'+r[1]+'</button>';});
+  h+='</div></div>';
   if(!(H.series||[]).length)h+='<div class="muted">体重の記録がまだありません。記録すると、ここに流れが出ます。</div>';
   else if(!pts.length)h+='<div class="muted">この期間の体重の記録はありません。「全期間」で見てみてください。</div>';
-  else{
-    h+='<div class="hv-h">体重</div>'+hvRangeStats(pts,'weight','kg')+hvChart(pts,'weight','体重（kg）','kg',H.goal);
-    if(pts.some(function(e){return hvNum(e.fat)!=null;}))h+='<div class="hv-h" style="margin-top:12px">体脂肪率</div>'+hvRangeStats(pts,'fat','%')+hvChart(pts,'fat','体脂肪率（%）','%','');
-  }
+  else h+=hvChart(pts,'weight','体重（kg）','kg',H.goal);
   h+='</div>';
-  h+='<h2>週ごとのまとめ</h2>'+hvWeeks(H);
-  h+='<h2>日ごとの記録</h2>'+hvDays(H);
-  h+='<p class="muted hv-note">ファスティング時間＝前に食べた最後の食事（間食をふくむ）から、その日の最初に食べたときまでの時間です。食べた時間の記録がそろった日だけ出ます。</p>';
+  h+=hvRecent7Boxes(H);
+  if(pts.some(function(e){return hvNum(e.fat)!=null;}))h+='<div class="card"><div class="hv-h">体脂肪率</div>'+hvChart(pts,'fat','体脂肪率（%）','%','')+'</div>';
+  h+='<div class="hv-sec" id="days-h">日ごとの記録</div>'+hvDays(H);
+  h+=hvWeeks(H);
+  h+='<p class="muted hv-note">ファスティング時間は、前の日の最後の食事（間食をふくむ）から、その日の最初に食べたときまでです。前日の記録がないときや、食べたのに時間が入っていないときは表示されません。朝を飛ばして昼から食べた日は、その分長くなります。写真の「LINE」は、公式LINEから送られた記録です。</p>';
   return h+'</div>';
 }
 var HIST=null,histLoading=false,histErr='';
@@ -899,7 +1077,7 @@ function viewHist(){
     if(!histLoading)loadHist();
     return '<div class="card muted">これまでの記録を読み込んでいます…</div>';
   }
-  return '<p class="muted">これまでの体重・体脂肪と、食事・ファスティングの流れです。がんばりの積み重ねを、ここでふりかえりましょう。</p>'+histView(HIST);
+  return histView(HIST);
 }
 function alertMsg(m,cls){document.getElementById('flash').innerHTML='<div class="card '+(cls||'ok')+'">'+esc(m)+'</div>';window.scrollTo(0,0);}
 /* ---------- 公式LINEから開いたとき ---------- */
