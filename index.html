@@ -103,9 +103,8 @@ header .who{font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
 #topbar{position:sticky;top:0;z-index:30;background:var(--bg)}
 #tabsbar{background:var(--bg);padding:4px 16px 0}
 #tabsbar .tabs{margin:0}
-#tabsbar .subtabs{display:flex;gap:5px;overflow-x:auto;margin:4px 0 0;padding:0 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-#tabsbar .subtabs::-webkit-scrollbar{display:none}
-#tabsbar .subtabs button{flex:1;min-width:3.4em;border-radius:999px;padding:7px 0;font-size:12.5px}
+#tabsbar .subtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:6px 0 0;padding:0 0 8px}
+#tabsbar .subtabs button{border-radius:999px;padding:8px 2px;font-size:12px;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:clip}
 .hv-hero{background:#0b0a08;color:#f6f1e8;border-radius:16px;padding:8px 14px;margin-bottom:6px;border:1px solid #d4af37}
 .hv-hero .k{font-size:11px;letter-spacing:.28em;color:#d4af37;font-weight:700}
 .hv-hero .now{display:flex;align-items:baseline;gap:8px;margin-top:4px}
