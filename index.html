@@ -1,7 +1,9 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GLOW UP. ご予約</title>
-<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="preconnect" href="https://static.line-scdn.net" crossorigin>
 <style>
 :root{--gold:#b08d2e;--ink:#1d1b18;--muted:#6b655b;--line:#e6dfd0;--bg:#faf8f3}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;font-size:15px;line-height:1.6}
@@ -209,8 +211,16 @@ header .who{font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
 .ovt th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:4px 5px;line-height:1.3;border-bottom:1px solid var(--line)}
 .ovt td{text-align:right;padding:7px 5px;border-bottom:1px solid var(--line)}.ovt th:first-child,.ovt td:first-child{text-align:left}
 .ovt tr.ovr{cursor:pointer}.ovt tr.ovr:hover{background:#fffdf6}.ovt .down{color:#1f7a3f;font-weight:700}.ovt .up{color:#9b2c25;font-weight:700}.ovt .old{color:#9b2c25}
-</style></head><body><div id="topbar"><header>GLOW UP.<div class="who" id="who"></div></header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><div id="tabsbar"></div></div><main id="app"><p class="muted">読み込み中…</p></main>
+.skel{height:64px;border-radius:12px;margin-bottom:10px;background:linear-gradient(90deg,#f1ecdf 25%,#f8f4ea 37%,#f1ecdf 63%);background-size:400% 100%;animation:sk 1.2s ease infinite}
+.skel.s{height:22px;width:55%}.skel.l{height:120px}
+@keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+body.stale #app,body.stale #tabsbar{pointer-events:none}
+</style></head><body><div id="topbar"><header>GLOW UP.<div class="who" id="who"></div></header><div id="flash" style="max-width:560px;margin:0 auto;padding:12px 16px 0"></div><div id="tabsbar"></div></div><main id="app"><div class="skel s"></div><div class="skel l"></div><div class="skel"></div><div class="skel"></div></main>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
+/* 起こしておく：画面を開いた瞬間にサーバーへ合図を送り、LINEの確認をしている間に、サーバーの準備を進めます（返事は使いません） */
+try{fetch("https://script.google.com/macros/s/AKfycbytwXgcklFUqBaWNb2P67plc8RXNIUmHkgx6Ckzao75rlsbQpm8i9BlVioV43IEg3lM/exec",{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:'{"action":"ping"}',redirect:"follow",credentials:"omit",cache:"no-store"}).catch(function(){});}catch(e){}
+
 /* GLOW UP. マイページ（公式LINE / LIFF）  ※予約システム v11 と組み合わせて使います
    LINEで本人確認 → 予約システム（Google Apps Script）の JSON API を fetch で呼びます。
    この画面から script.google.com へ移動することはありません。管理キーはここにはありません。 */
@@ -220,6 +230,8 @@ var FORM_URL_DEFAULT = 'https://docs.google.com/forms/d/e/1FAIpQLSdlOM8HhH2OuScb
 var OPEN_ERR = '画面を開けませんでした。時間をおいて、もう一度公式LINEの「マイページ」から開いてください。';
 var NET_ERR = '通信がうまくいきませんでした。電波のよいところで、もう一度お試しください。';
 var TOKEN = '';
+var STALE = false, SUB = '';
+var CK = 'glowup_me_v1';
 var NOTICE = '';
 var TICKET = '';
 var START = '';
@@ -232,7 +244,8 @@ function call(action, params){
 }
 /* 以前の gas() と同じ書き方で、サーバーを呼べるようにする小さな仕組み */
 var API_ARGS = {
-  api_me: ['me', ['token']],
+  api_me: ['me', ['token', 'lite']],
+  api_slots: ['slots', ['token']],
   api_book: ['book', ['token', 'ms', 'kind']],
   api_saveMeal: ['saveMeal', ['token', 'f']],
   api_saveSchedule: ['saveSchedule', ['token', 'f']],
@@ -263,8 +276,31 @@ function gas(){
 var E = null, ES = {step:'form', f:{}}, eLoading = false;
 var D = null, day = null, pick = null, tab = '予約', wDate = null;
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-function onMe(d){D=d;if(!wDate)wDate=d.today;if(START){tab=START;START='';}if(NOTICE){document.getElementById('flash').innerHTML='<div class="card ok" style="margin:0">'+esc(NOTICE)+'</div>';NOTICE='';}render();}
-function load(){if(!TOKEN){tab='申込み';render();return;}gas().withSuccessHandler(onMe).withFailureHandler(fail).api_me(TOKEN);}
+function saveCache(d){
+  if(!SUB||!d)return;
+  try{localStorage.setItem(CK,JSON.stringify({sub:SUB,t:Date.now(),me:d}));}catch(e){}
+}
+function dropCache(){try{localStorage.removeItem(CK);}catch(e){}}
+function localStart(tb){var m={mypage:'きょう',my:'きょう',home:'きょう',today:'きょう',book:'予約',reserve:'予約',yoyaku:'予約'};return m[String(tb||'').toLowerCase()]||'';}
+function showStale(){
+  if(!SUB||getU())return false;
+  try{
+    var o=JSON.parse(localStorage.getItem(CK)||'null');
+    if(!o||o.sub!==SUB||!o.me||!o.t||Date.now()-o.t>14*86400000)return false;
+    var st=localStart(getParam('tab'));
+    if(!st)return false;
+    D=o.me;D.slots=null;if(D.zoom&&D.zoom.eligible&&D.zoom.left>0)D.zoom.slots=null;
+    wDate=D.today;tab=st;STALE=true;document.body.className='stale';
+    document.getElementById('flash').innerHTML='<div class="muted" style="text-align:center">最新の情報に更新しています…</div>';
+    render();return true;
+  }catch(e){return false;}
+}
+function endStale(){if(STALE){STALE=false;document.body.className='';document.getElementById('flash').innerHTML='';}}
+function onMe(d){endStale();saveCache(d);D=d;if(!wDate)wDate=d.today;if(START){tab=START;START='';}if(NOTICE){document.getElementById('flash').innerHTML='<div class="card ok" style="margin:0">'+esc(NOTICE)+'</div>';NOTICE='';}render();}
+function load(){if(!TOKEN){tab='申込み';render();return;}gas().withSuccessHandler(onMe).withFailureHandler(fail).api_me(TOKEN,true);}
+var SLOT_LOADING=false;
+function ensureSlots(){if(SLOT_LOADING||!TOKEN)return;SLOT_LOADING=true;
+  call('slots',{token:TOKEN}).then(function(r){SLOT_LOADING=false;if(!D)return;D.slots=r.slots||[];if(D.zoom&&D.zoom.slots===null)D.zoom.slots=r.zoomSlots||[];if(tab==='予約')render();},function(e){SLOT_LOADING=false;if(!D)return;D.slots=[];if(D.zoom&&D.zoom.slots===null)D.zoom.slots=[];if(tab==='予約')render();});}
 function fail(e){document.getElementById('app').innerHTML='<div class="card err">'+esc(e.message||e)+'</div>';}
 function go(t){tab=t;render();}
 function tabs(){
@@ -276,7 +312,7 @@ function tabs(){
 function render(){
   var who=document.getElementById('who');
   var tb=document.getElementById('tabsbar');
-  if(!TOKEN){if(who)who.textContent='';if(tb)tb.innerHTML='';document.getElementById('app').innerHTML='<h1>入会のお申し込み</h1>'+viewEnroll();return;}
+  if(!TOKEN&&!STALE){if(who)who.textContent='';if(tb)tb.innerHTML='';document.getElementById('app').innerHTML='<h1>入会のお申し込み</h1>'+viewEnroll();return;}
   if(who)who.textContent=(D&&D.name)?(D.name+' 様'):'';
   if(tb)tb.innerHTML=tabs();
   var h='';
@@ -312,9 +348,12 @@ function viewBook(){
   if(z.eligible)kinds.push('Zoom面談');
   if(!bkind||kinds.indexOf(bkind)<0)bkind=kinds[0]||'';
   if(kinds.length>1){h+='<div class="seg kindseg">';kinds.forEach(function(k){h+='<button class="'+(bkind===k?'on':'')+'" onclick="selKind(\''+k+'\')">'+(k==='Zoom面談'?'Zoom面談':'パーソナル')+'</button>';});h+='</div>';}
-  var SL=bkind==='Zoom面談'?(z.slots||[]):D.slots, LEN=bkind==='Zoom面談'?z.len:D.len;
+  var pend=kinds.length>0&&((D.slots===null)||(z.eligible&&z.slots===null));if(pend)ensureSlots();
+  var SL=bkind==='Zoom面談'?(z.slots||[]):(D.slots||[]), LEN=bkind==='Zoom面談'?z.len:D.len;
   if(bkind==='Zoom面談'){h+='<div class="zbox"><span class="tag zoom">Zoom面談</span>'+zoomLine(z)+'<div class="muted">1回'+z.len+'分・オンライン'+(z.next?'　次回：'+esc(z.next):'')+'</div><div class="muted">'+esc(z.note)+'</div></div>';}
-  if(D.pendingApply&&!kinds.length){
+  if(pend&&kinds.length){
+    h+='<div class="skel"></div><div class="muted">空いている時間を読み込んでいます…</div>';
+  }else if(D.pendingApply&&!kinds.length){
     h+='<p>お申し込みを受け付けました。内容を確認して、こちらから受付確定のご連絡をします。確定までもうしばらくお待ちください。</p><p class="muted" style="margin:0">そのあいだに、「マイページ」の「きょう」や「目標」タブを使っておくこともできます。</p>';
   }else if(!kinds.length){
     h+='<p>こちらのプランは、食事サポートが中心です。この画面からのご予約はありません。</p><p class="muted" style="margin:0">対面でお会いしたいときは、公式LINEでご相談ください。</p>';
@@ -1110,13 +1149,15 @@ function startLine(){
     var idt=liff.getIDToken();
     if(!idt){fail({message:'LINEの確認ができませんでした。許可の画面で同意してから、もう一度開いてください。'});return;}
     var u=getU(), tb=getParam('tab');
-    call('line',{id_token:idt,u:u,tab:tb}).then(function(r){
+    try{SUB=(liff.getDecodedIDToken()||{}).sub||'';}catch(e){SUB='';}
+    showStale();
+    call('line',{id_token:idt,u:u,tab:tb,lite:true}).then(function(r){
       if((u||tb)&&window.history&&history.replaceState){try{history.replaceState(null,'',location.pathname);}catch(e){}}
       r=r||{};
       if(r.status==='ok'){TOKEN=r.token||'';NOTICE=r.notice||'';START=r.start||'';onMe(r.me);return;}
-      if(r.status==='enroll'){TOKEN='';TICKET=r.ticket||'';START=r.start||'申込み';load();return;}
-      showUnlinked(r.formUrl);
-    },fail);
+      if(r.status==='enroll'){endStale();dropCache();TOKEN='';TICKET=r.ticket||'';START=r.start||'申込み';load();return;}
+      endStale();dropCache();showUnlinked(r.formUrl);
+    },function(e){endStale();fail(e);});
   }).catch(function(){fail({message:OPEN_ERR});});
 }
 startLine();
