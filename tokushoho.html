@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特定商取引法に基づく表記｜GLOW UP.</title>
+<meta name="description" content="GLOW UP.（運営責任者：山本裕司）の特定商取引法に基づく表記です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141414;
+  --ink:#F6F1E8;
+  --muted:#C8BFA6;
+  --soft:#D8CDAF;
+  --gold:#FFC83C;
+  --gold-dim:#E8D9A8;
+  --line:rgba(255,200,60,.28);
+  --card:rgba(255,255,255,.035);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.75;-webkit-text-size-adjust:100%}
+body{max-width:720px;margin:0 auto;min-height:100vh}
+a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+a:hover{color:#ffe08a}
+.wrap{padding:0 20px 48px}
+header{
+  text-align:center;
+  padding:36px 20px 28px;
+  background:linear-gradient(180deg,#1a1916 0%,#141414 100%);
+  border-bottom:1px solid var(--line);
+}
+.wordmark{font-family:Cinzel,Georgia,serif;font-weight:600;font-size:15px;letter-spacing:.42em;padding-left:.42em;color:var(--gold);line-height:1}
+h1{margin-top:14px;font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-weight:700;font-size:22px;letter-spacing:.12em;color:#FFF8E7;line-height:1.45}
+.gold-line{width:48px;height:2px;background:var(--gold);margin:16px auto 0}
+.lead{margin:22px 0 8px;font-size:13.5px;color:var(--soft);line-height:1.8}
+.note{margin:0 0 24px;font-size:12.5px;color:var(--muted);line-height:1.7}
+section{margin-top:28px}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.section-head h2{font-family:"Noto Serif JP",serif;font-weight:700;font-size:15px;letter-spacing:.08em;color:var(--gold);white-space:nowrap}
+.section-head .bar{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,200,60,.7),rgba(255,200,60,.08))}
+dl{border:1px solid var(--line);background:var(--card);border-radius:4px;overflow:hidden}
+.row{padding:14px 16px;border-top:1px solid rgba(255,200,60,.16)}
+.row:first-child{border-top:0}
+dt{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+dd{font-size:14.5px;color:var(--ink)}
+dd p+p{margin-top:10px}
+dd ul{margin:8px 0 0 1.1em}
+dd li{margin:4px 0}
+.mono{font-variant-numeric:tabular-nums}
+.todo{display:inline-block;margin-top:4px;background:rgba(255,200,60,.14);border:1px solid rgba(255,200,60,.45);color:#FFF8E7;font-size:12.5px;font-weight:700;padding:3px 8px}
+.sub{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.7}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+th,td{border:1px solid rgba(255,200,60,.22);padding:8px 8px;vertical-align:top;text-align:left}
+th{background:rgba(255,200,60,.1);color:var(--gold-dim);font-weight:700;font-size:12px}
+td.price{color:var(--gold);font-family:"Noto Serif JP",serif;font-weight:700;white-space:nowrap}
+caption{caption-side:top;text-align:left;font-weight:700;color:#FFF8E7;margin-bottom:8px;font-size:13.5px}
+.badge{display:inline-block;background:var(--gold);color:#141414;font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+.plans{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.plan{background:rgba(255,255,255,.03);border:1px solid rgba(255,200,60,.22);padding:12px 14px}
+.plan .name{font-weight:700;font-size:15px;color:#FFF8E7;letter-spacing:.04em}
+.plan .meta{margin-top:4px;font-size:13px;color:var(--muted);line-height:1.65}
+.plan .fees{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 16px}
+.fee{min-width:42%}
+.fee .lab{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--gold-dim)}
+.fee .amt{display:block;margin-top:2px;font-family:"Noto Serif JP",serif;font-weight:700;font-size:18px;color:var(--gold);line-height:1.3}
+.group{margin-top:18px}
+.group h3{font-family:"Noto Serif JP",serif;font-weight:700;font-size:14.5px;color:#FFF8E7;margin-bottom:8px}
+footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--gold);font-size:12px}
+@media (max-width:520px){
+  h1{font-size:19px;letter-spacing:.08em}
+  .wrap{padding:0 16px 40px}
+  table{font-size:12px}
+  th,td{padding:7px 6px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark">GLOW UP.</div>
+  <h1>特定商取引法に基づく表記</h1>
+  <div class="gold-line"></div>
+</header>
+
+<div class="wrap">
+  <p class="lead">パーソナルトレーニングと食事サポート「GLOW UP.」を、通信販売（公式LINEおよびウェブ）でお申し込みいただく際の表示です。内容はサービス利用規約（第4版、2026年12月1日以降の新しいお申し込みに適用）に沿っています。</p>
+  <p class="note">すでにご契約中の内容は、当時の規約と申込内容確認書に従います。分からないところは、公式LINEでお気軽にお問い合わせください。</p>
+
+  <section>
+    <div class="section-head"><h2>事業者について</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>販売業者／屋号</dt>
+        <dd>GLOW UP.（グローアップ）</dd>
+      </div>
+      <div class="row">
+        <dt>運営責任者</dt>
+        <dd>山本　裕司</dd>
+      </div>
+      <div class="row">
+        <dt>所在地</dt>
+        <dd>〒676-0074　兵庫県高砂市梅井3丁目2-6-2</dd>
+      </div>
+      <div class="row">
+        <dt>電話番号</dt>
+        <dd><a href="tel:08014684285">080-1468-4285</a>
+          <p class="sub">電話の受付時間は特に定めていません。公式LINEでもご連絡いただけます。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>お問い合わせ</dt>
+        <dd>GLOW UP.公式LINE（ID：<a href="https://line.me/R/ti/p/@411ehhfi">@411ehhfi</a>）
+          <p class="sub">GLOW UP.からのご連絡、お客様からのご連絡は、原則として公式LINEで行います（利用規約第11条）。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>メールアドレス</dt>
+        <dd>
+          <a href="mailto:pago.y1022@gmail.com">pago.y1022@gmail.com</a>
+          <p class="sub">お問い合わせは、原則として公式LINEでお願いします。メールでのお問い合わせにも対応します。</p>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>販売価格</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>販売価格（税込）</dt>
+        <dd>
+          <p>料金はすべて税込です。お申し込み時点の料金表と「申込内容確認書」に書かれている金額が適用されます。</p>
+          <p><b>モニター価格</b>は、<b>2026年12月31日まで</b>のお申し込みに限り適用します（入会金込み）。2027年1月1日以降のお申し込みは、通常価格です。</p>
+          <p>最新の料金表は、<a href="https://glowup-yuji.github.io/glowup-liff/price.html">GLOW UP. 料金表</a>でもご確認いただけます。</p>
+
+          <div class="group">
+            <h3>卒業プログラム（3ヶ月）</h3>
+            <div class="plans">
+              <div class="plan">
+                <div class="name">スタンダード</div>
+                <div class="meta">週1回 × 12回　＋　毎日の食事サポート</div>
+                <div class="fees">
+                  <div class="fee"><span class="lab">モニター価格</span><span class="amt">¥118,000 <span class="badge">入会金込み</span></span></div>
+                  <div class="fee"><span class="lab">通常価格</span><span class="amt">¥168,000</span></div>
+                </div>
+                <p class="sub">3回払い（モニター）：¥39,400 ＋ ¥39,300 ＋ ¥39,300<br>3回払い（通常）：¥56,000 × 3</p>
+              </div>
+              <div class="plan">
+                <div class="name">ハード</div>
+                <div class="meta">週2回 × 24回　＋　毎日の食事サポート</div>
+                <div class="fees">
+                  <div class="fee"><span class="lab">モニター価格</span><span class="amt">¥198,000 <span class="badge">入会金込み</span></span></div>
+                  <div class="fee"><span class="lab">通常価格</span><span class="amt">¥268,000</span></div>
+                </div>
+                <p class="sub">3回払い（モニター）：¥66,000 × 3<br>3回払い（通常）：¥89,400 ＋ ¥89,300 ＋ ¥89,300</p>
+              </div>
+            </div>
+            <p class="sub">通常価格の卒業プログラムには、別途入会金 ¥20,000（初回カウンセリング・体組成の測定・姿勢チェック・専用プログラムの設計を含みます）がかかります。ご紹介の方は入会金がかかりません。モニター価格の方は入会金込みです。</p>
+          </div>
+
+          <div class="group">
+            <h3>オンライン食事サポート（3ヶ月・入会金なし）</h3>
+            <div class="plans">
+              <div class="plan">
+                <div class="name">オンライン食事サポート</div>
+                <div class="meta">毎日の食事写真フィードバック ＋ 月1回Zoom面談。トレーニングの指導は含みません。</div>
+                <div class="fees">
+                  <div class="fee"><span class="lab">モニター価格</span><span class="amt">¥39,800</span></div>
+                  <div class="fee"><span class="lab">通常価格</span><span class="amt">¥59,800</span></div>
+                </div>
+                <p class="sub">3回払い（モニター）：¥13,300 ＋ ¥13,300 ＋ ¥13,200<br>3回払い（通常）：¥20,000 ＋ ¥19,900 ＋ ¥19,900</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group">
+            <h3>月額プラン・その他（税込）</h3>
+            <div class="plans">
+              <div class="plan">
+                <div class="name">継続ハード</div>
+                <div class="meta">トレーニング月8回 ＋ 週1回の食事の振り返り</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥72,000</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">継続スタンダード</div>
+                <div class="meta">トレーニング月4回 ＋ 週1回の食事の振り返り</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥39,800</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">継続ライト</div>
+                <div class="meta">トレーニング月2回 ＋ 隔週の食事の振り返り</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥21,800</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">復帰プラン</div>
+                <div class="meta">1ヶ月で立て直す　トレーニング月4回 ＋ 毎日の食事サポート</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥54,000</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">オンライン継続（伴走）</div>
+                <div class="meta">食事写真は毎日・週1回の振り返り・月1回のZoom面談</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥9,800</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">卒業生会員</div>
+                <div class="meta">食事写真は毎日・月1回のフィードバック・困ったときの質問窓口。単発パーソナルは卒業生価格 ¥8,000</div>
+                <div class="fees"><div class="fee"><span class="lab">月額</span><span class="amt">¥3,980</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">単発パーソナル</div>
+                <div class="meta">トレーニング1回のみ（食事サポートは付きません）。卒業生会員の方は ¥8,000</div>
+                <div class="fees"><div class="fee"><span class="lab">1回</span><span class="amt">¥10,000</span></div></div>
+              </div>
+              <div class="plan">
+                <div class="name">開始日前の都度払い</div>
+                <div class="meta">毎月1日の開始日より前に対面トレーニングを希望する場合。当日払い。プランの回数には入りません。この期間の食事サポートは無料です。</div>
+                <div class="fees"><div class="fee"><span class="lab">1回</span><span class="amt">¥8,000</span></div></div>
+              </div>
+            </div>
+            <p class="sub">継続プラン・卒業生会員は、原則としてGLOW UP.の3ヶ月プログラムを終えた方が対象です。</p>
+          </div>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>お支払い</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>販売価格以外に必要な料金</dt>
+        <dd>
+          <ul>
+            <li>銀行振込の場合の振込手数料（お客様のご負担です）</li>
+            <li>送料はかかりません（役務の提供のため）</li>
+            <li>当日キャンセルで回数を残す場合のジム使用料：税込 ¥2,500（当日中にお支払いください）</li>
+          </ul>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>支払方法</dt>
+        <dd>
+          <ul>
+            <li>銀行振込（振込先は公式LINEでご案内します）</li>
+            <li>クレジットカード、またはPayPay（GLOW UP.が指定する正式なオンライン決済リンクからお支払いください）</li>
+          </ul>
+          <p>個人のPayPayアカウントへの送金では、お支払いを受け付けません。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>支払時期</dt>
+        <dd>
+          <p><b>3ヶ月のプログラム</b>（卒業プログラム、オンライン食事サポート）は、一括払いまたは3回払いを選べます。</p>
+          <ul>
+            <li>一括払い：開始日までに、全額をお支払いください。</li>
+            <li>3回払い：1回目は開始日まで。2回目は開始した月の20日まで、3回目はその翌月の20日までにお支払いください（その回の月が始まる前の月の20日までの前払いです）。ただし、20日より後に開始したときは、2回目も開始日までにお支払いください。</li>
+            <li>通常価格で入会金（¥20,000）がかかるときは、一括払いでは代金と一緒に、3回払いでは1回目と一緒に、開始日までにお支払いください。</li>
+          </ul>
+          <p><b>月額プラン</b>は前払いです。翌月分を、前月の20日までにお支払いください。はじめの月の分は、開始日までにお支払いください。</p>
+          <p>開始日より前の都度払いは、トレーニングを受けた当日にお支払いください。</p>
+          <p>開始日までにお支払いの確認ができないときは、サービスを開始しません。開始後に、お支払いの期限を過ぎても確認ができないときは、ご連絡のうえ、ご予約とサポートを一時停止します。</p>
+          <p>お支払いを確認したあと、領収書をお送りします。</p>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>役務の提供時期</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>お申し込みと契約の成立</dt>
+        <dd>お申し込みは、公式LINEの申込み画面から、利用規約と申込内容確認書を確認し、同意のうえで行います。GLOW UP.が内容を確認し、カウンセリングで開始月・開始日などを決めたうえで、公式LINEで「受付確定」をお知らせした時点で、契約が成立します。18歳未満の方は、保護者の方の同意が必要です。</dd>
+      </div>
+      <div class="row">
+        <dt>役務の提供時期</dt>
+        <dd>
+          <ul>
+            <li>対面のパーソナルトレーニングがつくプラン（卒業プログラム、継続プラン、復帰プラン）の開始日は、毎月1日です。開始月はカウンセリングで決めます。原則として、カウンセリングの日が1日のときはその日、2日以降のときは翌月の1日とします。</li>
+            <li>月の途中でカウンセリングをした場合は、開始日の前日まで、食事サポートとトレーニングのアドバイスを無料で行います（原則として1ヶ月未満）。この期間に対面トレーニングを希望される場合は、都度払い（1回 ¥8,000）となります。</li>
+            <li>3ヶ月のプログラムの期間は、開始日からちょうど3ヶ月です。オンライン食事サポート（3ヶ月）は、月の途中からでも開始できます。</li>
+            <li>月額プランの課金月は、毎月1日から末日までです。オンライン継続・卒業生会員も、原則として毎月1日を開始日・更新日とします。途中でお申し込みの場合は、開始日の前日までサポートを行い、料金は開始日からいただきます。</li>
+          </ul>
+          <p class="sub">トレーニングの予約は、公式LINEのマイページから行います。セッションの日時は、ご予約の確定後となります。</p>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>キャンセル・解約・返金</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>セッション（ご予約）のキャンセル</dt>
+        <dd>
+          <ul>
+            <li>前日の23時59分までは、マイページからキャンセルできます。この場合、回数は減りません。</li>
+            <li>当日のキャンセルは、次のいずれかをお選びください。<br>① ジム使用料（税込 ¥2,500）を当日中にお支払いいただき、回数は減らさない<br>② 1回分を使ったものとする</li>
+            <li>ご連絡のない欠席（無断キャンセル）は、1回分を使ったものとします。</li>
+            <li>急な病気やけが、災害、交通機関の大きな乱れなど、やむを得ない事情のときはご相談ください。GLOW UP.の都合でお休みにしたときは、回数は減らず、別の日に振り替えます。</li>
+          </ul>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>契約の解約と返金（利用規約第10条）</dt>
+        <dd>
+          <p><b>受付確定のお知らせを受け取った日から数えて8日以内</b>であれば、理由を問わず解約でき、お支払いいただいた料金を全額お返しします。公式LINEでお知らせください。これは、法律で決められた制度ではなく、安心してはじめていただくためのGLOW UP.独自の約束です。</p>
+          <p>9日目以降も、いつでも公式LINEで解約のお申し出ができます。この場合、次の計算でお返しします。</p>
+          <ul>
+            <li>お返しする金額 ＝ お支払いいただいた金額 − すでに提供した分 − 解約手数料</li>
+            <li>すでに提供した分：パーソナルのプランは「契約金額 ÷ 回数 × 受けた回数」と「契約金額 × 経過した日数 ÷ 契約期間の日数」のうち多いほう。オンライン食事サポートは「契約金額 × 経過した日数 ÷ 契約期間の日数」</li>
+            <li>解約手数料：まだ提供していない分の10%と、20,000円の、どちらか少ないほう</li>
+            <li>モニター価格（入会金込み）の場合も、入会金を別に差し引くことはしません</li>
+            <li>3回払いの途中で解約するときは、お支払い済みの金額で同じ計算をします。お支払い済みの金額が「すでに提供した分＋解約手数料」に足りないときは、その差額だけお支払いいただき、残りの分割払いはなくなります</li>
+          </ul>
+          <p>病気・けがなどやむを得ない事情で続けられなくなったときは、解約手数料はいただきません。期間の延長を選ぶこともできます。</p>
+          <p>月額のプランは、いつでもやめられます。やめるときは、翌月分のお支払い期限と同じ前月の20日までに公式LINEでお知らせください。20日までにご連絡いただければ、その月の末日までご利用いただけ、翌月分はいただきません。20日を過ぎてからのご連絡は、翌月の末日までのご利用となり、翌月分のお支払いが必要です。</p>
+          <p>返金は、解約のお申し出から30日以内に、お客様の口座へのお振り込み（または、正式な決済リンクでお支払いいただいた場合はその方法）で行います。</p>
+          <p>GLOW UP.の都合でサービスを続けられなくなったときは、まだ提供していない分を、手数料なしで全額お返しします。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>クーリングオフについて</dt>
+        <dd>
+          <p>パーソナルトレーニングおよび食事サポートは、特定商取引法で定める「特定継続的役務提供」（エステティック、美容医療、語学教室、家庭教師、学習塾、パソコン教室、結婚相手紹介サービス）には該当しません。そのため、特定継続的役務提供を対象とするクーリングオフの規定は適用されません。</p>
+          <p>また、通信販売（公式LINEおよびウェブからのお申し込み）には、法律上のクーリングオフ制度は適用されません。</p>
+          <p>これに代わるものとして、GLOW UP.では上記のとおり、受付確定のお知らせを受け取った日から数えて8日以内であれば、理由を問わず全額返金いたします（利用規約第10条第1項。GLOW UP.独自の約束です）。</p>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>その他</h2><div class="bar"></div></div>
+    <dl>
+      <div class="row">
+        <dt>サービスの性質</dt>
+        <dd>食事サポートは、食事の知識と習慣を身につけていただくためのアドバイスです。医療行為・診断・治療ではありません。食事やトレーニングの効果には個人差があり、体重・体型・体調などの結果を保証するものではありません。</dd>
+      </div>
+      <div class="row">
+        <dt>準拠法</dt>
+        <dd>日本の法律に従います。万一、話し合いで解決できないときは、大阪地方裁判所または大阪簡易裁判所を第一審の裁判所とします。</dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer>
+    <div>
+      <div class="brand">GLOW UP.</div>
+      <div>本表記は、サービス利用規約（2026年11月版・第4版）および料金表に基づきます。</div>
+    </div>
+    <div>制定：2026年11月</div>
+  </footer>
+</div>
+</body>
+</html>
