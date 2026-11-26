@@ -48,14 +48,7 @@ dd{font-size:14.5px;color:var(--ink)}
 dd p+p{margin-top:10px}
 dd ul{margin:8px 0 0 1.1em}
 dd li{margin:4px 0}
-.mono{font-variant-numeric:tabular-nums}
-.todo{display:inline-block;margin-top:4px;background:rgba(255,200,60,.14);border:1px solid rgba(255,200,60,.45);color:#FFF8E7;font-size:12.5px;font-weight:700;padding:3px 8px}
 .sub{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.7}
-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-th,td{border:1px solid rgba(255,200,60,.22);padding:8px 8px;vertical-align:top;text-align:left}
-th{background:rgba(255,200,60,.1);color:var(--gold-dim);font-weight:700;font-size:12px}
-td.price{color:var(--gold);font-family:"Noto Serif JP",serif;font-weight:700;white-space:nowrap}
-caption{caption-side:top;text-align:left;font-weight:700;color:#FFF8E7;margin-bottom:8px;font-size:13.5px}
 .badge{display:inline-block;background:var(--gold);color:#141414;font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;margin-left:4px;vertical-align:1px;white-space:nowrap}
 .plans{margin-top:14px;display:flex;flex-direction:column;gap:10px}
 .plan{background:rgba(255,255,255,.03);border:1px solid rgba(255,200,60,.22);padding:12px 14px}
@@ -72,8 +65,6 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
 @media (max-width:520px){
   h1{font-size:19px;letter-spacing:.08em}
   .wrap{padding:0 16px 40px}
-  table{font-size:12px}
-  th,td{padding:7px 6px}
 }
 </style>
 </head>
@@ -92,8 +83,8 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
     <div class="section-head"><h2>事業者について</h2><div class="bar"></div></div>
     <dl>
       <div class="row">
-        <dt>販売業者／屋号</dt>
-        <dd>GLOW UP.（グローアップ）</dd>
+        <dt>販売事業者名</dt>
+        <dd>山本　裕司（屋号：GLOW UP.／グローアップ）</dd>
       </div>
       <div class="row">
         <dt>運営責任者</dt>
@@ -101,12 +92,16 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
       </div>
       <div class="row">
         <dt>所在地</dt>
-        <dd>〒676-0074　兵庫県高砂市梅井3丁目2-6-2</dd>
+        <dd>
+          <p>大阪府（対面のセッションは大阪・梅田で実施します）。くわしい住所は、ご請求があれば遅滞なく開示します。</p>
+          <p class="sub">ご請求は、公式LINE（ID：@411ehhfi）または下記メールアドレスへお願いします。</p>
+        </dd>
       </div>
       <div class="row">
         <dt>電話番号</dt>
-        <dd><a href="tel:08014684285">080-1468-4285</a>
-          <p class="sub">電話の受付時間は特に定めていません。公式LINEでもご連絡いただけます。</p>
+        <dd>
+          <p>ご請求があれば遅滞なく開示します。</p>
+          <p class="sub">通常のお問い合わせは、公式LINEでお願いします。</p>
         </dd>
       </div>
       <div class="row">
@@ -118,7 +113,7 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
       <div class="row">
         <dt>メールアドレス</dt>
         <dd>
-          <a href="mailto:pago.y1022@gmail.com">pago.y1022@gmail.com</a>
+          <p><a href="mailto:pago.y1022@gmail.com">pago.y1022@gmail.com</a></p>
           <p class="sub">お問い合わせは、原則として公式LINEでお願いします。メールでのお問い合わせにも対応します。</p>
         </dd>
       </div>
@@ -236,6 +231,7 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
             <li>銀行振込の場合の振込手数料（お客様のご負担です）</li>
             <li>送料はかかりません（役務の提供のため）</li>
             <li>当日キャンセルで回数を残す場合のジム使用料：税込 ¥2,500（当日中にお支払いください）</li>
+            <li>インターネット通信料・Zoom等の通信費は、お客様のご負担です</li>
           </ul>
         </dd>
       </div>
@@ -244,24 +240,25 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
         <dd>
           <ul>
             <li>銀行振込（振込先は公式LINEでご案内します）</li>
-            <li>クレジットカード、またはPayPay（GLOW UP.が指定する正式なオンライン決済リンクからお支払いください）</li>
+            <li>クレジットカード（Visa、Mastercard、American Express、JCBなど）、またはPayPay（GLOW UP.が指定する、Stripeを利用した正式なオンライン決済リンクからお支払いください）</li>
           </ul>
-          <p>個人のPayPayアカウントへの送金では、お支払いを受け付けません。</p>
+          <p class="sub">個人のPayPayアカウントへの送金では、お支払いを受け付けません。</p>
         </dd>
       </div>
       <div class="row">
         <dt>支払時期</dt>
         <dd>
-          <p><b>3ヶ月のプログラム</b>（卒業プログラム、オンライン食事サポート）は、一括払いまたは3回払いを選べます。</p>
+          <p>3ヶ月のプログラム（卒業プログラム、オンライン食事サポート）は、一括払いまたは3回払いを選べます。</p>
           <ul>
             <li>一括払い：開始日までに、全額をお支払いください。</li>
             <li>3回払い：1回目は開始日まで。2回目は開始した月の20日まで、3回目はその翌月の20日までにお支払いください（その回の月が始まる前の月の20日までの前払いです）。ただし、20日より後に開始したときは、2回目も開始日までにお支払いください。</li>
             <li>通常価格で入会金（¥20,000）がかかるときは、一括払いでは代金と一緒に、3回払いでは1回目と一緒に、開始日までにお支払いください。</li>
           </ul>
-          <p><b>月額プラン</b>は前払いです。翌月分を、前月の20日までにお支払いください。はじめの月の分は、開始日までにお支払いください。</p>
+          <p>月額プランは前払いです。翌月分を、前月の20日までにお支払いください。はじめの月の分は、開始日までにお支払いください。</p>
           <p>開始日より前の都度払いは、トレーニングを受けた当日にお支払いください。</p>
           <p>開始日までにお支払いの確認ができないときは、サービスを開始しません。開始後に、お支払いの期限を過ぎても確認ができないときは、ご連絡のうえ、ご予約とサポートを一時停止します。</p>
           <p>お支払いを確認したあと、領収書をお送りします。</p>
+          <p>クレジットカードおよびPayPay（Stripeの決済リンク）でお支払いいただく場合は、決済操作の完了と同時に支払いが確定します。</p>
         </dd>
       </div>
     </dl>
@@ -283,7 +280,24 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
             <li>3ヶ月のプログラムの期間は、開始日からちょうど3ヶ月です。オンライン食事サポート（3ヶ月）は、月の途中からでも開始できます。</li>
             <li>月額プランの課金月は、毎月1日から末日までです。オンライン継続・卒業生会員も、原則として毎月1日を開始日・更新日とします。途中でお申し込みの場合は、開始日の前日までサポートを行い、料金は開始日からいただきます。</li>
           </ul>
-          <p class="sub">トレーニングの予約は、公式LINEのマイページから行います。セッションの日時は、ご予約の確定後となります。</p>
+          <p>トレーニングの予約は、公式LINEのマイページから行います。セッションの日時は、ご予約の確定後となります。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>提供場所・提供方法</dt>
+        <dd>
+          <p>対面のトレーニングは、大阪・梅田のトレーニング施設で実施します。ご利用いただく施設は、お申し込み・カウンセリングの際にご案内します。</p>
+          <p>食事サポートは公式LINE、面談はZoomで行います。</p>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>動作環境（オンラインのプラン・Zoom面談・マイページ）</dt>
+        <dd>
+          <ul>
+            <li>公式LINEが使えるスマートフォン（iOS / Android）</li>
+            <li>Zoom面談：ZoomアプリまたはZoomが使えるブラウザ、マイク・カメラ、安定したインターネット接続</li>
+            <li>マイページ：JavaScriptが有効なウェブブラウザ（Safari、Chrome、Edgeなどの最新版を推奨）</li>
+          </ul>
         </dd>
       </div>
     </dl>
@@ -306,7 +320,7 @@ footer .brand{font-family:Cinzel,Georgia,serif;letter-spacing:.2em;color:var(--g
       <div class="row">
         <dt>契約の解約と返金（利用規約第10条）</dt>
         <dd>
-          <p><b>受付確定のお知らせを受け取った日から数えて8日以内</b>であれば、理由を問わず解約でき、お支払いいただいた料金を全額お返しします。公式LINEでお知らせください。これは、法律で決められた制度ではなく、安心してはじめていただくためのGLOW UP.独自の約束です。</p>
+          <p>受付確定のお知らせを受け取った日から数えて8日以内であれば、理由を問わず解約でき、お支払いいただいた料金を全額お返しします。公式LINEでお知らせください。これは、法律で決められた制度ではなく、安心してはじめていただくためのGLOW UP.独自の約束です。</p>
           <p>9日目以降も、いつでも公式LINEで解約のお申し出ができます。この場合、次の計算でお返しします。</p>
           <ul>
             <li>お返しする金額 ＝ お支払いいただいた金額 − すでに提供した分 − 解約手数料</li>
